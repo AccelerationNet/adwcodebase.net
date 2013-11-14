@@ -10,21 +10,13 @@ using System.Reflection;
 namespace Tests.Core {
     public class ReflectionExtensionsTests : Base {
 
-        Assembly assembly;
-
-        [SetUp]
-        public void Setup() {
-            assembly = Assembly.GetAssembly(typeof(ReflectionExtensions));
-        }
-
         class DummyAttribute : Attribute { }
 
         [Test]
         public void GetAttribute() {
-            Assert.IsNotNull(assembly.GetAttribute<AssemblyInformationalVersionAttribute>());
-
+            var assembly = Assembly.GetAssembly(typeof(ReflectionExtensions));
+            Assert.IsNotNull(assembly.GetAttribute<AssemblyCopyrightAttribute>());
             Assert.IsNull(assembly.GetAttribute<DummyAttribute>());
-
         }
 
     }

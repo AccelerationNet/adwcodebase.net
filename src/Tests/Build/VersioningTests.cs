@@ -9,19 +9,14 @@ using NUnit.Framework;
 
 namespace Tests.Build {
     public class VersioningTests : Base {
-        [Test]
-        public void VersionInfo() {
-            var info = Versioning.VersionInfo(Assembly.GetAssembly(typeof(Versioning)));
-            Assert.IsNotNull(info);
-            Assert.IsNotNull(info.InformationalVersion);
-            Assert.IsNotNull(info.Version);
-        }
+        public const string INFORMATIONAL_VERSION = "asdf";
 
         [Test]
-        public void VersionInfoNoInfo() {
+        public void VersionInfo() {
             var info = Versioning.VersionInfo(Assembly.GetExecutingAssembly());
             Assert.IsNotNull(info);
-            Assert.IsNull(info.InformationalVersion);
+            Assert.AreEqual(INFORMATIONAL_VERSION, info.InformationalVersion);
+
             Assert.IsNotNull(info.Version);
         }
     }
