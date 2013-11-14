@@ -42,3 +42,10 @@ See each project's readme for more information.
  * `Acceleration` - base classes and extensions to fundamental .NET
    framework classes
  * `Acceleration.Build` - MSBuild helpers
+
+## Guidelines
+
+ * make extension methods when it feels like you're adding missing
+   functionality; a lot of the time it makes more sense to just use a
+   static method.
+ * put extension methods in the `Acceleration.Extensions`
