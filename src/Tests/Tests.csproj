@@ -54,15 +54,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Acceleration.Build\Acceleration.Build.csproj">
+    <ProjectReference Include="..\Build\Build.csproj">
       <Project>{249975fe-dcbf-402c-a9b6-e7e4c4220b65}</Project>
       <Name>Acceleration.Build</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Acceleration.NUnit\Acceleration.NUnit.csproj">
+    <ProjectReference Include="..\NUnit\NUnit.csproj">
       <Project>{3f4361b4-3e84-48a8-a7a3-80490fc206eb}</Project>
       <Name>Acceleration.NUnit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Acceleration\Acceleration.csproj">
+    <ProjectReference Include="..\Core\Core.csproj">
       <Project>{6c36c103-ef08-431e-bba1-eb60a091b575}</Project>
       <Name>Acceleration</Name>
     </ProjectReference>

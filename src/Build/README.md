@@ -10,7 +10,7 @@ To install in a csproj:
 
  1. open the csprof and add:
 
-        <Import Project="../../../adwcodebase.net/src/Acceleration.Build/tools/Versioning.targets" />
+        <Import Project="../../../adwcodebase.net/src/Build/tools/Versioning.targets" />
 		
  1. add `**/version.generated.cs` to your `.gitignore`
  1. be sure there's no `AssemblyInformationalVersion` specified elsewhere
