@@ -48,8 +48,7 @@ namespace Acceleration.Build
             var v = new VersionInfo();
             var inf = assembly.GetAttribute<AssemblyInformationalVersionAttribute>();
             if (inf != null) v.InformationalVersion = inf.InformationalVersion;
-            var ver = assembly.GetAttribute<AssemblyVersionAttribute>();
-            if (ver != null) v.Version = ver.Version;
+            v.Version = assembly.GetName().Version.ToString();
             return v;
         }
     }

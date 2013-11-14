@@ -9,6 +9,10 @@ namespace Acceleration.Extensions {
         /// <summary>
         /// Fetch an attribute 
         /// </summary>
+        /// <remarks>
+        /// This is implemented in .NET 4 or 4.5, but the ifas-hr project
+        /// is stuck at 3.5 to support it's server environment, so re-create.
+        /// </remarks>
         /// <typeparam name="T"></typeparam>
         /// <param name="provider"></param>
         /// <returns></returns>
