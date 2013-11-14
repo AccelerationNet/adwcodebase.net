@@ -23,6 +23,7 @@
 	<_Parameter1>$(DescribeOutput)</_Parameter1>
       </AssemblyAttributes>
     </ItemGroup>
+    <MakeDir Directories="Properties\"/>
     <WriteCodeFragment Language="C#" OutputFile="$(VersionFile)" AssemblyAttributes="@(AssemblyAttributes)" />
     <ItemGroup>
       <Compile Include="$(VersionFile)"/>
