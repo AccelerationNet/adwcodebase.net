@@ -35,3 +35,10 @@ Shared codebase for .NET projects.
 If these libraries stabilize, then we can publish them to nuget/github
 and use stock nuget for easier inclusion in .NET projects
     
+## Contents
+
+See each project's readme for more information.
+
+ * `Acceleration` - base classes and extensions to fundamental .NET
+   framework classes
+ * `Acceleration.Build` - MSBuild helpers

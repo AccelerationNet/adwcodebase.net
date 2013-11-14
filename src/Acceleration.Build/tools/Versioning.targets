@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="_GitDescribe" Returns="DescribeOutput">
+    <Exec Command="&quot;C:\Program Files (x86)\Git\bin\git.exe&quot; describe --tags --dirty" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="DescribeOutput"/>
+    </Exec>
+    <Message Text="git describe --tags: '$(DescribeOutput)'"/>
+  </Target>
+
+  <Target Name="UpdateAssemblyInformationalVersion"
+	  DependsOnTargets="_GitDescribe"
+	  BeforeTargets="BeforeBuild"
+	  Condition="'$(USERNAME)' != 'jenkins'">
+    <!-- current jenkins server is too old for .net 4.5, and this
+         fails on .net 4.0 because we're using Exec's ConsoleToMSBuild
+         property -->
+    <PropertyGroup>
+      <VersionFile>Properties\Version.generated.cs</VersionFile>
+    </PropertyGroup>
+    <ItemGroup>
+      <AssemblyAttributes Include="AssemblyInformationalVersion">
+	<_Parameter1>$(DescribeOutput)</_Parameter1>
+      </AssemblyAttributes>
+    </ItemGroup>
+    <WriteCodeFragment Language="C#" OutputFile="$(VersionFile)" AssemblyAttributes="@(AssemblyAttributes)" />
+    <ItemGroup>
+      <Compile Include="$(VersionFile)"/>
+    </ItemGroup>
+  </Target>
+</Project>
