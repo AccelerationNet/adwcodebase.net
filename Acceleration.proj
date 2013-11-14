@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+	 DefaultTargets="Build"
+	 InitialTargets="_findBinaries">
+
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <Sln>src\Acceleration.sln</Sln>
+    <NunitArgs>src\tests.nunit /framework=4.0 /result=Build\nunit.xml /output=Build\nunit.out.log /err=Build\nunit.err.log</NunitArgs>
+    <GendarmeArgs>--xml Build\gendarme.xml --html Build\gendarme.html</GendarmeArgs>
+  </PropertyGroup>
+
+
+
+  <Target Name="Build">
+    <MakeDir Directories="Build\"/>
+    <MSBuild Projects="$(Sln)" Properties="Configuration=$(Configuration)" />
+  </Target>
+
+  <Target Name="_findBinaries">
+    <ItemGroup>
+      <NUnitBinaries Include="src\packages\**\nunit-console.exe"/>
+      <GendarmeBinaries Include="src\packages\**\gendarme.exe"/>
+    </ItemGroup>
+
+    <CreateProperty Value="@(NUnitBinaries)">
+      <Output TaskParameter="Value" PropertyName="NUnitBinary" />
+    </CreateProperty>
+
+    <CreateProperty Value="@(GendarmeBinaries)">
+      <Output TaskParameter="Value" PropertyName="GendarmeBinary" />
+    </CreateProperty>
+
+  </Target>
+
+  <Target Name="Test" DependsOnTargets="Build" AfterTargets="Jenkins">
+    <Message Text="Running $(NUnitBinary) $(NunitArgs)"/>
+    <Exec Command="$(NUnitBinary) $(NunitArgs)" WorkingDirectory="$(MSBuildProjectDirectory)"/>
+  </Target>
+
+  <Target Name="Analyze" DependsOnTargets="Build" AfterTargets="Jenkins">
+    <ItemGroup>
+      <AnalyzeBinaries Include="src\Tests\bin\Debug\Accele*.dll"/>
+    </ItemGroup>
+
+    <CreateProperty Value="@(AnalyzeBinaries, ' ')">
+      <Output TaskParameter="Value" PropertyName="AssembliesToAnalyze" />
+    </CreateProperty>
+
+    <Message Text="Running $(GendarmeBinary) $(GendarmeArgs) $(AssembliesToAnalyze)"/>
+    <Exec Command="$(GendarmeBinary) $(GendarmeArgs) $(AssembliesToAnalyze)"
+	  IgnoreExitCode="True"/>
+  </Target>
+
+  <Target Name="Jenkins" DependsOnTargets="Build"/>
+</Project>
+
