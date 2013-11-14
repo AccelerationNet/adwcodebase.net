@@ -2,20 +2,14 @@
 
 Shared codebase for .NET projects.
 
- * root namespace: `Acceleration`
- * contains shared msbuild files
- * multiple assemblies for different extensions, minimizing
-   dependencies
-    * `Acceleration` - base extensions to framework things like
-      `ICollection`, `Linq`, etc
-	* assembly for each library: `Acceleration.MVC`,
-      `Acceleration.Ninject`, `Acceleration.EF`
- * all extension methods go into the `Acceleration.Extensions`
-   regardless of assembly. Buys convenience for the risk of
-   compile-time name conflicts, which are easily resolvable.
- * use nuget conventions to enable nuget deployment later
- * checkout as siblings to other projects, use `../../adwcodebase.net/src/foo/foo.csproj` to
-   reference them 
+## Building 
+
+We have MSBuild targets setup:
+
+ * `/t:Build` - builds everything
+ * `/t:Test` - builds everything and runs the tests
+ * `/t:Analyze` - builds everything and runs static analysis
+ * `/t:Jenkins` - builds everything, runs tests, runs static analysis
 
 ## How to use
 
@@ -42,6 +36,8 @@ See each project's readme for more information.
  * `Acceleration` - base classes and extensions to fundamental .NET
    framework classes
  * `Acceleration.Build` - MSBuild helpers
+ * `Acceleration.NUnit` - common testing setup
+ * `Tests` - unit tests for the shared code
 
 ## Guidelines
 
@@ -49,3 +45,6 @@ See each project's readme for more information.
    functionality; a lot of the time it makes more sense to just use a
    static method.
  * put extension methods in the `Acceleration.Extensions`
+ * put a readme.md in each project
+ * write unit tests
+ * use nuget conventions to enable nuget deployment later
