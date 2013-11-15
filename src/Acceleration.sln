@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{6C36C103-EF08-431E-BBA1-EB60A091B575}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Core", "Core\Acceleration.Core.csproj", "{6C36C103-EF08-431E-BBA1-EB60A091B575}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "Build\Build.csproj", "{249975FE-DCBF-402C-A9B6-E7E4C4220B65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Build", "Build\Acceleration.Build.csproj", "{249975FE-DCBF-402C-A9B6-E7E4C4220B65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9C2BD67C-B300-4C86-8978-5A1A17AB80A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnit", "NUnit\NUnit.csproj", "{3F4361B4-3E84-48A8-A7A3-80490FC206EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.NUnit", "NUnit\Acceleration.NUnit.csproj", "{3F4361B4-3E84-48A8-A7A3-80490FC206EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1FF304C4-A409-4B9E-955A-332C5D36F45A}"
 	ProjectSection(SolutionItems) = preProject

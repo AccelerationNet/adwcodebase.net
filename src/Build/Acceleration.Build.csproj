@@ -43,9 +43,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\Core\Acceleration.Core.csproj">
       <Project>{6c36c103-ef08-431e-bba1-eb60a091b575}</Project>
-      <Name>Acceleration</Name>
+      <Name>Acceleration.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
