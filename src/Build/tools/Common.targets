@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <BuildArtifactsDir>Build\</BuildArtifactsDir>
+    <NunitFile>src\tests.nunit</NunitFile>
+    <NunitArgs>$(NunitFile) /framework=4.0 /result=$(BuildArtifactsDir)nunit.xml /output=$(BuildArtifactsDir)nunit.out.log /err=$(BuildArtifactsDir)nunit.err.log</NunitArgs>
+    <GendarmeArgs>--xml $(BuildArtifactsDir)gendarme.xml --html $(BuildArtifactsDir)gendarme.html</GendarmeArgs>
+  </PropertyGroup>
+
+  <Target Name="_findBinaries">
+    <ItemGroup>
+      <NUnitBinaries Include="src\packages\**\nunit-console.exe"/>
+      <GendarmeBinaries Include="src\packages\**\gendarme.exe"/>
+    </ItemGroup>
+
+    <CreateProperty Value="@(NUnitBinaries)">
+      <Output TaskParameter="Value" PropertyName="NUnitBinary" />
+    </CreateProperty>
+
+    <CreateProperty Value="@(GendarmeBinaries)">
+      <Output TaskParameter="Value" PropertyName="GendarmeBinary" />
+    </CreateProperty>
+
+  </Target>
+
+
+  <Target Name="Build">
+    <MakeDir Directories="$(BuildArtifactsDir)"/>
+    <MSBuild Projects="$(Sln)" Properties="Configuration=$(Configuration)" />
+  </Target>
+
+
+  <Target Name="Test" DependsOnTargets="_findBinaries;Build"
+	  AfterTargets="Jenkins">
+    <ItemGroup>
+      <GendarmeBinaries Include="src\packages\**\gendarme.exe"/>
+    </ItemGroup>
+
+    <CreateProperty Value="@(NUnitBinaries)">
+      <Output TaskParameter="Value" PropertyName="NUnitBinary" />
+    </CreateProperty>
+
+    <Message Text="Running $(NUnitBinary) $(NunitArgs)"/>
+    <Exec Command="$(NUnitBinary) $(NunitArgs)" WorkingDirectory="$(MSBuildProjectDirectory)"/>
+  </Target>
+
+  <Target Name="Analyze" DependsOnTargets="_findBinaries;Build"
+	  Condition="'@(AnalyzeBinaries)' != ''"
+	  AfterTargets="Jenkins">
+
+    <CreateProperty Value="@(AnalyzeBinaries, ' ')">
+      <Output TaskParameter="Value" PropertyName="AssembliesToAnalyze" />
+    </CreateProperty>
+
+    <Message Text="Running $(GendarmeBinary) $(GendarmeArgs) $(AssembliesToAnalyze)"/>
+    <Exec Command="$(GendarmeBinary) $(GendarmeArgs) $(AssembliesToAnalyze)"
+	  IgnoreExitCode="True"/>
+  </Target>
+
+  <Target Name="Jenkins" DependsOnTargets="Build"/>
+</Project>
