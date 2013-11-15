@@ -14,8 +14,19 @@ namespace Acceleration.NUnit
         static bool oneTimeSetup;
         protected ILog Log { get; private set; }
 
+        protected DateTime TEST_DATETIME { get; private set; }
+        protected decimal TEST_DECIMAL { get; private set; }
+        protected double TEST_DOUBLE { get; private set; }
+        protected int TEST_INT { get; private set; }
+        protected string TEST_STRING { get; private set; }
+
         public Base() {
             Log = LogManager.GetLogger(GetType());
+            TEST_DATETIME = DateTime.Now;
+            TEST_DECIMAL = 1.21M;
+            TEST_DOUBLE = Math.PI;
+            TEST_INT = 12345;
+            TEST_STRING = "test";
         }
 
         [TestFixtureSetUp]
