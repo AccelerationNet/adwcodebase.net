@@ -11,4 +11,8 @@
     <AnalyzeAssemblies>src\Tests\bin\Debug\Accel*.dll</AnalyzeAssemblies>
   </PropertyGroup>
 
+  <Target Name="Docs" AfterTargets="Jenkins">
+    <Exec Command="tools\doxygen.exe doxyfile"/>
+  </Target>
+
 </Project>
