@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1FF304
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Core-net35", "Acceleration.Core-net35\Acceleration.Core-net35.csproj", "{7EA86120-8978-4D68-9517-5B0F995F39AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Build-net35", "Acceleration.Build-net35\Acceleration.Build-net35.csproj", "{F71DECBA-2B4D-47D0-9BA0-7BB00E247650}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,14 @@ Global
 		{3F4361B4-3E84-48A8-A7A3-80490FC206EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F4361B4-3E84-48A8-A7A3-80490FC206EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F4361B4-3E84-48A8-A7A3-80490FC206EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EA86120-8978-4D68-9517-5B0F995F39AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EA86120-8978-4D68-9517-5B0F995F39AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA86120-8978-4D68-9517-5B0F995F39AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA86120-8978-4D68-9517-5B0F995F39AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F71DECBA-2B4D-47D0-9BA0-7BB00E247650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71DECBA-2B4D-47D0-9BA0-7BB00E247650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71DECBA-2B4D-47D0-9BA0-7BB00E247650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71DECBA-2B4D-47D0-9BA0-7BB00E247650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
