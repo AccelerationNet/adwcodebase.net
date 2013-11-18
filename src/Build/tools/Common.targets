@@ -46,10 +46,15 @@
   </Target>
 
   <Target Name="Analyze" DependsOnTargets="_findBinaries;Build"
-	  Condition="'@(AnalyzeBinaries)' != ''"
+	  Condition="'$(AnalyzeAssemblies)' != ''"
 	  AfterTargets="Jenkins">
 
-    <CreateProperty Value="@(AnalyzeBinaries, ' ')">
+    <ItemGroup>
+      <_AnalyzeAssemblies Include="$(AnalyzeAssemblies)"/>      
+    </ItemGroup>
+
+
+    <CreateProperty Value="@(_AnalyzeAssemblies, ' ')">
       <Output TaskParameter="Value" PropertyName="AssembliesToAnalyze" />
     </CreateProperty>
 
