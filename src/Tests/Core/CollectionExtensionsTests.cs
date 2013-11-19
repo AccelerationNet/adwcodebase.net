@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using Acceleration.Extensions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Core {
-    class CollectionExtensionsTests : Base {
-
+    [TestClass]
+    public class CollectionExtensionsTests : Base {
         
-        [Test]
+        [TestMethod]
         public void Add() {
             ICollection<int> a = new List<int>();
-            Assert.IsEmpty(a);
+            Assert.AreEqual(0, a.Count);
             a.Add(1);
             Assert.AreEqual(1, a.Count);
             Assert.AreEqual(2, a.Add(2, 3));

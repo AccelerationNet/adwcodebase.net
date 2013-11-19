@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using Acceleration.Extensions;
 using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Core {
+    [TestClass]
     public class ReflectionExtensionsTests : Base {
 
         class DummyAttribute : Attribute { }
 
-        [Test]
+        [TestMethod]
         public void GetAttribute() {
             var assembly = Assembly.GetAssembly(typeof(ReflectionExtensions));
             Assert.IsNotNull(assembly.GetAttribute<AssemblyCopyrightAttribute>());

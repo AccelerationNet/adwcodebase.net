@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using Moq;
 using System.Data;
 using Acceleration.Extensions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Core {
-    class DataExtensionsTests : Base {
+    [TestClass]
+    public class DataExtensionsTests : Base {
 
         Mock<IDataReader> MockReader;
         IDataReader Reader { get { return MockReader.Object; } }
 
-        [SetUp]
+        [TestInitialize]
         public void SetupMocks() {
             MockReader = new Mock<IDataReader>();
             MockReader.SetupGet(x => x.FieldCount).Returns(3);
@@ -32,7 +33,7 @@ namespace Tests.Core {
             MockReader.Setup(x => x.GetDateTime(1)).Returns(TEST_DATETIME);
         }
 
-        [Test]
+        [TestMethod]
         public void ColumnOrdinalMap() {
             var map = Reader.ColumnOrdinalMap();
 
@@ -40,7 +41,7 @@ namespace Tests.Core {
             Assert.AreEqual(1, map["B"]);
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ColumnOrdinalMapWithDupes() {
             // duplicate the column name
@@ -48,7 +49,7 @@ namespace Tests.Core {
             Reader.ColumnOrdinalMap();
         }
 
-        [Test]
+        [TestMethod]
         public void GetAsWhenDBNull() {
             Assert.AreEqual(0, Reader.GetAs<int>(0), "ask for a normal type, get default");
             Assert.IsNull(Reader.GetAs<int?>(0), "ask for a nullable type, get null");
@@ -59,13 +60,13 @@ namespace Tests.Core {
 
         }
 
-        [Test]
+        [TestMethod]
         public void GetAs() {
             Assert.AreEqual(TEST_DATETIME, Reader.GetAs<DateTime>(1));
             Assert.AreEqual(TEST_DATETIME, Reader.GetAs<DateTime?>(1), "correctly handles nullable values");
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void GetAsNoMapping() {
             Reader.GetAs<IDataReader>(1);       

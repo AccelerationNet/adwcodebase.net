@@ -4,33 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Acceleration.Extensions;
-using NUnit.Framework;
+
 using Moq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests.Core {
-    class DictionaryExtensionsTests : Base {
+    [TestClass]
+    public class DictionaryExtensionsTests : Base {
 
         IDictionary<int, int> dict;
 
-        [SetUp]
+        [TestInitialize]
         public void Setup() {
             dict = new Dictionary<int, int>();
         }
 
-        [Test]
+        [TestMethod]
         public void GetWithDefault() {
             Assert.IsFalse(dict.ContainsKey(0));
             Assert.AreEqual(10, dict.Get(0, 10));
             Assert.IsFalse(dict.ContainsKey(0));
         }
-        [Test]
+        [TestMethod]
         public void Get() {
             Assert.IsFalse(dict.ContainsKey(0));
             Assert.AreEqual(default(int), dict.Get(0));
             Assert.IsFalse(dict.ContainsKey(0));
         }
 
-        [Test]
+        [TestMethod]
         public void Ensure() {
             var fetcher = new Mock<IExpensive>();
             fetcher.Setup(f => f.Run(0)).Returns(10);
@@ -44,7 +46,7 @@ namespace Tests.Core {
             fetcher.Verify(f => f.Run(0), Times.Once, "fn only runs once for repeated calls to ensure");
         }
 
-        [Test]
+        [TestMethod]
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void EnsureErrorInValueFn() {
             var fetcher = new Mock<IExpensive>();

@@ -11,6 +11,12 @@
     <AssemblyName>Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +39,7 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.2\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.1.1309.1617\lib\net40\Moq.dll</HintPath>
     </Reference>
@@ -60,13 +67,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Acceleration.Testing\Acceleration.Testing.csproj">
+      <Project>{7620550d-616d-42ab-9c77-bad077cfe33c}</Project>
+      <Name>Acceleration.Testing</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Build\Acceleration.Build.csproj">
       <Project>{249975fe-dcbf-402c-a9b6-e7e4c4220b65}</Project>
       <Name>Acceleration.Build</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NUnit\Acceleration.NUnit.csproj">
-      <Project>{3f4361b4-3e84-48a8-a7a3-80490fc206eb}</Project>
-      <Name>Acceleration.NUnit</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Acceleration.Core.csproj">
       <Project>{6c36c103-ef08-431e-bba1-eb60a091b575}</Project>
