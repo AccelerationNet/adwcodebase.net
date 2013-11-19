@@ -7,7 +7,6 @@
   <PropertyGroup>
     <Configuration>Debug</Configuration>
     <Sln>src\Acceleration.sln</Sln>
-    <NunitFile>src\tests.nunit</NunitFile>
     <AnalyzeAssemblies>src\Tests\bin\Debug\Accel*.dll</AnalyzeAssemblies>
   </PropertyGroup>
 
