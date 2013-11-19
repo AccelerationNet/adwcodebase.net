@@ -3,7 +3,6 @@
 
   <PropertyGroup>
     <BuildArtifactsDir>Build\</BuildArtifactsDir>
-    <NunitFile>src\tests.nunit</NunitFile>
     <NunitArgs>$(NunitFile) /framework=4.0 /result=$(BuildArtifactsDir)nunit.xml /output=$(BuildArtifactsDir)nunit.out.log /err=$(BuildArtifactsDir)nunit.err.log</NunitArgs>
     <GendarmeArgs>--xml $(BuildArtifactsDir)gendarme.xml --html $(BuildArtifactsDir)gendarme.html</GendarmeArgs>
   </PropertyGroup>
@@ -32,14 +31,8 @@
 
 
   <Target Name="Test" DependsOnTargets="_findBinaries;Build"
+	  Condition="'$(NunitFile)' != ''"
 	  AfterTargets="Jenkins">
-    <ItemGroup>
-      <GendarmeBinaries Include="src\packages\**\gendarme.exe"/>
-    </ItemGroup>
-
-    <CreateProperty Value="@(NUnitBinaries)">
-      <Output TaskParameter="Value" PropertyName="NUnitBinary" />
-    </CreateProperty>
 
     <Message Text="Running $(NUnitBinary) $(NunitArgs)"/>
     <Exec Command="$(NUnitBinary) $(NunitArgs)" WorkingDirectory="$(MSBuildProjectDirectory)"/>
