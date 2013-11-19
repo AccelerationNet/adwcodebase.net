@@ -7,16 +7,24 @@ using Acceleration.Extensions;
 
 namespace Acceleration.Build
 {
+    /// <summary>
+    /// version information
+    /// </summary>
     public interface IVersionInfo {
         string InformationalVersion { get; }
         string Version { get; }
     }
 
-    sealed class VersionInfo : IVersionInfo {
+    class VersionInfo : IVersionInfo
+    {
         public string InformationalVersion { get; set; }
         public string Version { get; set; }
     }
 
+    /// <summary>
+    /// Helpers and extensions to get version information from 
+    /// assembly attributes.
+    /// </summary>
     public static class Versioning
     {
         /// <summary>
@@ -51,5 +59,7 @@ namespace Acceleration.Build
             v.Version = assembly.GetName().Version.ToString();
             return v;
         }
+
+        
     }
 }
