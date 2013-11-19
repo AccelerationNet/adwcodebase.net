@@ -8,6 +8,7 @@
     <Configuration>Debug</Configuration>
     <Sln>src\Acceleration.sln</Sln>
     <AnalyzeAssemblies>src\Tests\bin\Debug\Accel*.dll</AnalyzeAssemblies>
+    <MSTestFile>src\Tests\bin\Debug\Tests.dll</MSTestFile>
   </PropertyGroup>
 
   <Target Name="Docs" AfterTargets="Jenkins">
