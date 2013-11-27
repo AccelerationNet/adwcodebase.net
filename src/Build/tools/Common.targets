@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <BuildArtifactsDir>Build\</BuildArtifactsDir>
-    <NunitArgs>$(NunitFile) /framework=4.0 /result=$(BuildArtifactsDir)nunit.xml /output=$(BuildArtifactsDir)nunit.out.log /err=$(BuildArtifactsDir)nunit.err.log</NunitArgs>
+    <NunitArgs>/framework=4.0 /result=$(BuildArtifactsDir)nunit.xml /output=$(BuildArtifactsDir)nunit.out.log /err=$(BuildArtifactsDir)nunit.err.log</NunitArgs>
     <GendarmeArgs>--xml $(BuildArtifactsDir)gendarme.xml --html $(BuildArtifactsDir)gendarme.html</GendarmeArgs>    
     <VsTestBinary>"$(VS120COMNTOOLS)..\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"</VsTestBinary>
     <MSTestArgs>/logger:trx</MSTestArgs>
@@ -39,8 +39,8 @@
   <Target Name="NunitTest" DependsOnTargets="_findBinaries;Build"
 	  Condition="'$(NunitFile)' != ''">
 
-    <Message Text="Running $(NUnitBinary) $(NunitArgs)"/>
-    <Exec Command="$(NUnitBinary) $(NunitArgs)" WorkingDirectory="$(MSBuildProjectDirectory)"/>
+    <Message Text="Running $(NUnitBinary) $(NunitFile) $(NunitArgs)"/>
+    <Exec Command="$(NUnitBinary) $(NunitFile) $(NunitArgs)" WorkingDirectory="$(MSBuildProjectDirectory)"/>
   </Target>
 
   <Target Name="MSTest" DependsOnTargets="Build"
