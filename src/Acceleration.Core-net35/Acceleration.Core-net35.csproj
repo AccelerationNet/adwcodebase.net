@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Core\Data\MappedReader.cs">
+      <Link>Data\MappedReader.cs</Link>
+    </Compile>
     <Compile Include="..\Core\Disposable.cs">
       <Link>Disposable.cs</Link>
     </Compile>

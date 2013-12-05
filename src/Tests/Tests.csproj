@@ -58,6 +58,7 @@
     <Compile Include="Build\VersioningTests.cs" />
     <Compile Include="Core\CollectionExtensionsTests.cs" />
     <Compile Include="Core\DataExtensionsTests.cs" />
+    <Compile Include="Core\Data\MappedReaderTests.cs" />
     <Compile Include="Core\DictionaryExtensionsTests.cs" />
     <Compile Include="Core\ReflectionExtensionsTests.cs" />
     <Compile Include="Base.cs" />
