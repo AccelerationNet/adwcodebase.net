@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Build-net35", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Testing", "Acceleration.Testing\Acceleration.Testing.csproj", "{7620550D-616D-42AB-9C77-BAD077CFE33C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Core-net40", "Acceleration.Core-net40\Acceleration.Core-net40.csproj", "{E255F51E-DDB5-4D57-AA25-C2179CC66F43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{7620550D-616D-42AB-9C77-BAD077CFE33C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7620550D-616D-42AB-9C77-BAD077CFE33C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7620550D-616D-42AB-9C77-BAD077CFE33C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E255F51E-DDB5-4D57-AA25-C2179CC66F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E255F51E-DDB5-4D57-AA25-C2179CC66F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E255F51E-DDB5-4D57-AA25-C2179CC66F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E255F51E-DDB5-4D57-AA25-C2179CC66F43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
