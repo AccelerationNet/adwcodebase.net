@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using Acceleration.Core.Data;
 
 namespace Acceleration.Extensions {
+    /// <summary>
+    /// Extension methods for `System.Data` classes
+    /// </summary>
     public static class DataExtensions {
 
         /// <summary>
         /// Generate a mapping of column name to column ordinal
         /// </summary>
         /// <param name="reader"></param>
-        /// <returns></returns>
+        /// <returns>map of column name to ordinal</returns>
         public static IDictionary<string, int> ColumnOrdinalMap(this IDataReader reader) {
             if (reader == null) throw new ArgumentNullException("reader");
 
@@ -23,7 +27,7 @@ namespace Acceleration.Extensions {
         }
 
         /// <summary>
-        /// A mapping of types to IDataReader converter functions
+        /// A mapping of types to `IDataReader` converter functions
         /// </summary>
         static IDictionary<Type, Func<IDataReader, int, object>> Converters = MakeConverters();
 
@@ -100,6 +104,17 @@ namespace Acceleration.Extensions {
                 throw new ArgumentOutOfRangeException("column", "column not contained in the map");
 
             return reader.GetAs<T>(map[column]);
+        }
+
+        /// <summary>
+        /// Make a helper object to fetch and cast values by name 
+        /// instead of ordinal
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        public static IMappedReader MappedReader(this IDataReader reader) {
+            if (reader == null) throw new ArgumentNullException("reader");
+            return new MappedReader(reader);
         }
     }
 }

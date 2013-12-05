@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Acceleration.Extensions {
     /// <summary>
-    /// add-ons to <see cref="ICollection"/>
+    /// Extension methods for `System.Collections` classes
     /// </summary>
     public static class CollectionExtensions {
         /// <summary>

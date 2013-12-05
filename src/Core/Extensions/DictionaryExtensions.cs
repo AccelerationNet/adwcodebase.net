@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 
 namespace Acceleration.Extensions {
+    /// <summary>
+    /// Extension methods for `System.Collections.IDictionary`
+    /// </summary>
     public static class DictionaryExtensions {
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace Acceleration.Build
         string Version { get; }
     }
 
-    class VersionInfo : IVersionInfo
+    internal class VersionInfo : IVersionInfo
     {
         public string InformationalVersion { get; set; }
         public string Version { get; set; }

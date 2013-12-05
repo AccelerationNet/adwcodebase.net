@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Acceleration.Core {
     /// <summary>
-    /// Easily create one-off <see cref="IDisposable"/> instances
+    /// Easily create one-off `IDisposable` instances
     /// </summary>
     /// <remarks>Adapted from http://stackoverflow.com/questions/676746/custom-html-helpers-create-helper-with-using-statement-support</remarks>
     public sealed class DisposableHelper : IDisposable {
@@ -24,7 +24,7 @@ namespace Acceleration.Core {
     }
 
     /// <summary>
-    /// Base class for IDisposable implementations
+    /// Base class for `IDisposable` implementations
     /// </summary>
     /// <remarks>Follows guidelines in http://msdn.microsoft.com/en-us/library/aa720161%28v=vs.71%29.aspx </remarks>
     public abstract class Disposable : IDisposable {

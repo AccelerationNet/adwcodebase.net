@@ -5,6 +5,9 @@ using System.Reflection;
 using System.Text;
 
 namespace Acceleration.Extensions {
+    /// <summary>
+    /// Extension methods for `System.Reflection` classes
+    /// </summary>
     public static class ReflectionExtensions {
         /// <summary>
         /// Fetch an attribute 
