@@ -1,4 +1,5 @@
-# adwcodebase.net
+adwcodebase.net {#mainpage}
+===============
 
 Shared codebase for .NET projects.
 
@@ -10,13 +11,14 @@ We have MSBuild targets setup:
  * `/t:Test` - builds everything and runs the tests
  * `/t:Analyze` - builds everything and runs static analysis
  * `/t:Jenkins` - builds everything, runs tests, runs static analysis
+ * `/t:Docs` - make the docs
 
 ## How to use
 
  * checkout `adwcodebase.net` in the same folder with working copies
    of your other .NET projects
     
-	  git clone gitolite@git.acceleration.net:adwcodebase.net.git
+	    git clone gitolite@git.acceleration.net:adwcodebase.net.git
 	  
  * open your other .NET project's `Sln` file in visual studio
  * File -> Add Existing Project
@@ -33,10 +35,10 @@ and use stock nuget for easier inclusion in .NET projects
 
 See each project's readme for more information.
 
- * `Acceleration` - base classes and extensions to fundamental .NET
+ * `Acceleration.Core` - base classes and extensions to fundamental .NET
    framework classes
- * `Acceleration.Build` - MSBuild helpers
- * `Acceleration.NUnit` - common testing setup
+ * `Acceleration.Build` - MSBuild helpers - see [README.md](build.html)
+ * `Acceleration.Testing` - common testing setup for `NUnit` and `MSTest`
  * `Tests` - unit tests for the shared code
 
 ## Guidelines
@@ -45,6 +47,6 @@ See each project's readme for more information.
    functionality; a lot of the time it makes more sense to just use a
    static method.
  * put extension methods in the `Acceleration.Extensions`
- * put a readme.md in each project
+ * put a `README.md` in each project
  * write unit tests
  * use nuget conventions to enable nuget deployment later

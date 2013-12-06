@@ -1,4 +1,5 @@
-# Acceleration.Build
+Acceleration.Build {#build}
+==================
 
 Helpers for MSBuild.
 
