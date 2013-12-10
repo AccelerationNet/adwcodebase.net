@@ -10,7 +10,7 @@ namespace Acceleration.Core.Data {
 
     /// <summary>
     /// A wrapper around a `IDataReader` that handles mapping
-    /// from column name to column ordinal.
+    /// from column name to column ordinal, all case-insensitive.
     /// </summary>
     public interface IMappedReader {
         /// <summary>
@@ -47,25 +47,23 @@ namespace Acceleration.Core.Data {
         /// <summary>
         /// cache results of <see cref="InspectType"/>
         /// </summary>
-        IDictionary<Type, ReaderPropertyCollection> PropertyMapCache;
+        static IDictionary<Type, ReaderPropertyCollection> PropertyMapCache =
+            new Dictionary<Type, ReaderPropertyCollection>();
 
         internal MappedReader(IDataReader reader) {
             if (reader == null) throw new ArgumentNullException("reader");
             Reader = reader;
-            Map = reader.ColumnOrdinalMap();
-            PropertyMapCache = new Dictionary<Type, ReaderPropertyCollection>();
+            Map = ToLower(reader.ColumnOrdinalMap());
         }
 
         T IMappedReader.GetAs<T>(string column) {
-            return Reader.GetAs<T>(column, Map);
+            return Reader.GetAs<T>(Map[column.ToLower()]);
         }
 
-        T IMappedReader.Parse<T>(IDictionary<string, string> renames) {
+        T IMappedReader.Parse<T>(IDictionary<string, string> propColumnOverride) {
             var result = new T();
-
-            var namesToMap = Map.Keys.ToList();
-            if (renames != null)
-                namesToMap.Add(renames.Keys);
+            var renames = ToLower(propColumnOverride);
+            var namesToMap = Map.Keys.Union(renames.Keys);            
 
             var props =
                 from p in PropertyMapCache.Ensure(typeof(T), InspectType)
@@ -74,16 +72,24 @@ namespace Acceleration.Core.Data {
 
             foreach (var p in props) {
                 var sqlColumn = p.Name;
-                if (renames != null && renames.Keys.Contains(p.Name)) {
-                    sqlColumn = renames[p.Name];
-                }
 
-                var column = Map.Get(p.Name);
+                if(renames.ContainsKey(p.Name))
+                    sqlColumn = renames[p.Name].ToLower();
 
                 p.Setter.Invoke(result,
                     new[] { Reader.GetAs(p.Type, Map[sqlColumn]) });
             }
             return result;
+        }
+
+        static IDictionary<string, T> ToLower<T>(IDictionary<string, T> d) {
+            var res = new Dictionary<string, T>();
+            if(d == null) return res;
+
+            foreach (var item in d) {
+                res.Add(item.Key.ToLower(), item.Value);
+            }
+            return res;
         }
 
         /// <summary>
@@ -111,12 +117,12 @@ namespace Acceleration.Core.Data {
         /// </summary>
         /// <param name="t">type to inspect</param>
         /// <returns>all writable public properties</returns>
-        ReaderPropertyCollection InspectType(Type t) {
+        static ReaderPropertyCollection InspectType(Type t) {
             var props =
                from p in t.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                where p.CanWrite
                select new ReaderProperty {
-                   Name = p.Name,
+                   Name = p.Name.ToLower(),
                    Type = p.PropertyType,
                    Setter = p.GetSetMethod()
                };

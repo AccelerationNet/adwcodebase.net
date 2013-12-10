@@ -87,5 +87,16 @@ namespace Tests.Core.Data {
             Assert.AreEqual(TEST_INT, obj.TestInt);
             Assert.AreEqual(TEST_INT, obj.TestNullInt);            
         }
+
+        class TestObjDifferentCapitialization : TestObjLessPropsThanQuery {
+            public string TestSTR { get; set; }
+        }
+
+        [TestMethod]
+        public void ParseWithDifferentCaptialization() {
+            var obj = Map.Parse<TestObjDifferentCapitialization>();
+            Assert.AreEqual(TEST_STRING, obj.TestStr);
+            Assert.AreEqual(TEST_STRING, obj.TestSTR);            
+        }
     }
 }
