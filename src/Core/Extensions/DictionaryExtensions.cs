@@ -20,7 +20,23 @@ namespace Acceleration.Extensions {
         /// <returns></returns>
         public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue defaultValue=default(TValue)) {
             if (dict == null) throw new ArgumentNullException("dict");
-            return dict.Keys.Contains(key) ? dict[key] : defaultValue;
+            return key != null && dict.Keys.Contains(key)
+                ? dict[key] : defaultValue;
+        }
+
+        /// <summary>
+        /// Get a key from the dictionary, or calculate a default value
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dict"></param>
+        /// <param name="key"></param>
+        /// <param name="valueFn"></param>
+        /// <returns></returns>
+        public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, Func<TKey, TValue> valueFn) {
+            if (dict == null) throw new ArgumentNullException("dict");
+            return key != null && dict.Keys.Contains(key)
+                ? dict[key] : valueFn(key);
         }
 
         /// <summary>
