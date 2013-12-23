@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -57,6 +58,26 @@ namespace Acceleration.Extensions {
             if (!dict.Keys.Contains(key))
                 dict[key] = valueFn(key);
             return dict[key];
+        }
+
+        /// <summary>
+        /// Ensure this key is in this dictionary, setting it if needed
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dict"></param>
+        /// <param name="key"></param>
+        /// <param name="valueFn"></param>
+        /// <returns></returns>
+        public static TValue Ensure<TKey, TValue>(this IDictionary dict, TKey key, Func<TKey, TValue> valueFn) {
+            if (dict == null) throw new ArgumentNullException("dict");
+            if (key == null) throw new ArgumentNullException("key");
+            if (valueFn == null)
+                throw new ArgumentNullException("defaultValueFn");
+
+            if (!dict.Contains(key))
+                dict[key] = valueFn(key);
+            return (TValue) dict[key];
         }
     }
 }
