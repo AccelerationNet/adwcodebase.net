@@ -63,6 +63,24 @@ namespace Acceleration.Extensions {
         /// <summary>
         /// Ensure this key is in this dictionary, setting it if needed
         /// </summary>
+        /// <remarks>
+        /// The specific overload resolves an ambigious type error when using
+        /// `System.Collections.Generic.Dictionary`, which implements generic
+        /// and regular `IDictionary`
+        /// </remarks>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dict"></param>
+        /// <param name="key"></param>
+        /// <param name="valueFn"></param>
+        /// <returns></returns>
+        public static TValue Ensure<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, Func<TKey, TValue> valueFn) {
+            return Ensure((IDictionary<TKey, TValue>)dict, key, valueFn);
+        }
+
+        /// <summary>
+        /// Ensure this key is in this dictionary, setting it if needed
+        /// </summary>
         /// <typeparam name="TKey"></typeparam>
         /// <typeparam name="TValue"></typeparam>
         /// <param name="dict"></param>
