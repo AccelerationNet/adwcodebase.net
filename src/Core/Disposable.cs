@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -18,6 +19,9 @@ namespace Acceleration.Core {
             onDone();
         }
 
+        [SuppressMessage("Gendarme.Rules.Correctness",
+            "EnsureLocalDisposalRule",
+            Justification = "caller's responsibility")]
         public static IDisposable Create(Action onDone) {
             return new DisposableHelper() { onDone = onDone };
         }
@@ -46,7 +50,7 @@ namespace Acceleration.Core {
         /// Clean up resources
         /// </summary>
         /// <param name="disposing">true if called from `Dispose` or `using`, false if called from GC clean-up</param>
-        void Dispose(bool disposing) {
+        protected virtual void Dispose(bool disposing) {
             if (disposed) return;
 
             if (disposing) DisposeManagedResources();

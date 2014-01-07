@@ -21,5 +21,12 @@ namespace Tests.Core {
             Assert.AreEqual(3, a.Add(a.ToArray().AsEnumerable()));
             Assert.AreEqual(6, a.Count);
         }
+        [TestMethod]
+        public void AddNull() {
+            ICollection<int> a = new List<int>();
+            Assert.AreEqual(0, a.Count);
+            Assert.AreEqual(0, a.Add((IEnumerable<int>)null));
+            Assert.AreEqual(0, a.Count);            
+        }
     }
 }

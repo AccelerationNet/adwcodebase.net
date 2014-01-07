@@ -17,6 +17,7 @@ namespace Acceleration.Extensions {
         /// <returns>how many items were added</returns>
         public static int Add<T>(this ICollection<T> collection, IEnumerable<T> items) {
             if (collection == null) throw new ArgumentNullException("collection");
+            if (items == null) return 0;
 
             var count = 0;
             foreach (var item in items) { collection.Add(item); count++; }

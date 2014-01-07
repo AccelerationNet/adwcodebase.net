@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Acceleration.Core.Data;
@@ -56,6 +57,9 @@ namespace Acceleration.Extensions {
         /// <param name="requestedType"></param>
         /// <param name="ordinal"></param>
         /// <returns></returns>
+        [SuppressMessage("Gendarme.Rules.Portability",
+            "MonoCompatibilityReviewRule",
+            Justification = "checking type == null is fine")]
         public static object GetAs(this IDataReader reader, Type requestedType, int ordinal) {
             if (reader == null) throw new ArgumentNullException("reader");
             if (requestedType == null) throw new ArgumentNullException("requestedType");

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Acceleration.Testing
 {
@@ -16,6 +17,9 @@ namespace Acceleration.Testing
         static bool oneTimeSetup;
 
         [TestFixtureSetUp]
+        [SuppressMessage("Gendarme.Rules.Concurrency",
+            "WriteStaticFieldFromInstanceMethodRule",
+            Justification = "no other way to get one-time setup")]
         public void TestFixtureSetup()
         {
             if (!oneTimeSetup)

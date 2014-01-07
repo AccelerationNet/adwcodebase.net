@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using Acceleration.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Acceleration.Build
 {
@@ -15,7 +16,7 @@ namespace Acceleration.Build
         string Version { get; }
     }
 
-    internal class VersionInfo : IVersionInfo
+    internal sealed class VersionInfo : IVersionInfo
     {
         public string InformationalVersion { get; set; }
         public string Version { get; set; }
@@ -32,6 +33,9 @@ namespace Acceleration.Build
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
+        [SuppressMessage("Gendarme.Rules.Design.Generic",
+            "AvoidMethodWithUnusedGenericTypeRule",
+            Justification = "simple API is nice")]
         public static IVersionInfo VersionInfo<T>() {
             return VersionInfo(typeof(T));
         }
@@ -41,6 +45,9 @@ namespace Acceleration.Build
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
+        [SuppressMessage("Gendarme.Rules.Portability",
+            "MonoCompatibilityReviewRule",
+            Justification = "checking type == null is fine")]
         public static IVersionInfo VersionInfo(Type type) {
             if (type == null) throw new ArgumentNullException("type");
             return VersionInfo(type.Assembly);

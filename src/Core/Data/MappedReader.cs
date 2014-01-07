@@ -27,17 +27,18 @@ namespace Acceleration.Core.Data {
         /// public, settable properties
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="renames">
+        /// <param name="propColumnOverride">
         /// mapping of property names to SQL columns for inexact matches
         /// </param>
         /// <returns></returns>
-        T Parse<T>(IDictionary<string, string> renames = null) where T : class,new();
+        T Parse<T>(IDictionary<string, string> propColumnOverride = null)
+            where T : class,new();
     }
 
     /// <summary>
     /// Implementation of `IMapperReader`
     /// </summary>
-    internal class MappedReader : IMappedReader {        
+    internal sealed class MappedReader : IMappedReader {        
         IDataReader Reader;
         /// <summary>
         /// Column to ordinal map
@@ -96,7 +97,7 @@ namespace Acceleration.Core.Data {
         /// grouping of reflection data needed to map 
         /// from column names to object properties
         /// </summary>
-        class ReaderProperty {
+        sealed class ReaderProperty {
             public string Name { get; set; }
             public Type Type { get; set; }
             public MethodInfo Setter { get; set; }
@@ -108,7 +109,7 @@ namespace Acceleration.Core.Data {
         /// <remarks>
         /// Mostly to reduce nested generic type declarations
         /// </remarks>
-        class ReaderPropertyCollection : List<ReaderProperty> {
+        sealed class ReaderPropertyCollection : List<ReaderProperty> {
             internal ReaderPropertyCollection(ICollection<ReaderProperty> props) : base(props) { }
         }
 
@@ -117,7 +118,7 @@ namespace Acceleration.Core.Data {
         /// </summary>
         /// <param name="t">type to inspect</param>
         /// <returns>all writable public properties</returns>
-        static ReaderPropertyCollection InspectType(Type t) {
+        static ReaderPropertyCollection InspectType(IReflect t) {
             var props =
                from p in t.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                where p.CanWrite
