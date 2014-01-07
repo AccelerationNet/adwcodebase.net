@@ -1,7 +1,5 @@
-Acceleration.Build {#build}
-==================
-
-Helpers for MSBuild.
+\namespace Acceleration.Build
+\brief Helpers for MSBuild.
 
 ### Versioning
 

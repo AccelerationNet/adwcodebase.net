@@ -37,7 +37,7 @@ See each project's readme for more information.
 
  * `Acceleration.Core` - base classes and extensions to fundamental .NET
    framework classes
- * `Acceleration.Build` - MSBuild helpers - see [README.md](@ref build)
+ * `Acceleration.Build` - MSBuild helpers
  * `Acceleration.Testing` - common testing setup for `NUnit` and `MSTest`
  * `Tests` - unit tests for the shared code
 
