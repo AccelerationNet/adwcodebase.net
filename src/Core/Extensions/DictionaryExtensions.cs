@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -36,6 +37,8 @@ namespace Acceleration.Extensions {
         /// <returns></returns>
         public static TValue Get<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, Func<TKey, TValue> valueFn) {
             if (dict == null) throw new ArgumentNullException("dict");
+            if (valueFn == null)
+                throw new ArgumentNullException("valueFn");
             return key != null && dict.Keys.Contains(key)
                 ? dict[key] : valueFn(key);
         }
@@ -53,7 +56,7 @@ namespace Acceleration.Extensions {
             if (dict == null) throw new ArgumentNullException("dict");
             if (key == null) throw new ArgumentNullException("key");
             if (valueFn == null)
-                throw new ArgumentNullException("defaultValueFn");
+                throw new ArgumentNullException("valueFn");
 
             if (!dict.Keys.Contains(key))
                 dict[key] = valueFn(key);
@@ -74,6 +77,9 @@ namespace Acceleration.Extensions {
         /// <param name="key"></param>
         /// <param name="valueFn"></param>
         /// <returns></returns>
+        [SuppressMessage("Gendarme.Rules.Maintainability", 
+            "AvoidUnnecessarySpecializationRule",
+            Justification = "needed to disambiguated between `IDictionary` and `IDictionary<Tk,Tv>`, which are both implemented by `Dictionary<Tk,Tv>`")]
         public static TValue Ensure<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, Func<TKey, TValue> valueFn) {
             return Ensure((IDictionary<TKey, TValue>)dict, key, valueFn);
         }
@@ -91,7 +97,7 @@ namespace Acceleration.Extensions {
             if (dict == null) throw new ArgumentNullException("dict");
             if (key == null) throw new ArgumentNullException("key");
             if (valueFn == null)
-                throw new ArgumentNullException("defaultValueFn");
+                throw new ArgumentNullException("valueFn");
 
             if (!dict.Contains(key))
                 dict[key] = valueFn(key);
