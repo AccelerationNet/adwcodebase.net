@@ -11,8 +11,8 @@
 
   <Target Name="_findBinaries">
     <ItemGroup>
-      <NUnitBinaries Include="src\packages\**\nunit-console.exe"/>
-      <GendarmeBinaries Include="src\packages\**\gendarme.exe"/>
+      <NUnitBinaries Include="src\packages\**\nunit-console.exe;packages\**\nunit-console.exe"/>
+      <GendarmeBinaries Include="src\packages\**\gendarme.exe;packages\**\gendarme.exe"/>
     </ItemGroup>
 
     <CreateProperty Value="@(NUnitBinaries)">
