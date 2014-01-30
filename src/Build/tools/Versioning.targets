@@ -17,7 +17,8 @@
 
   <Target Name="UpdateAssemblyInformationalVersion"
 	  DependsOnTargets="_GitDescribe"
-	  BeforeTargets="BeforeBuild">
+	  BeforeTargets="BeforeBuild"
+	  Condition="Exists('$(GitExecutable)')">
     <ItemGroup>
       <AssemblyAttributes Include="AssemblyInformationalVersion">
 	<_Parameter1>$(DescribeOutput)</_Parameter1>
