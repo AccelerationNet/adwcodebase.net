@@ -5,7 +5,7 @@
     <VersionFileDirectory>Properties\</VersionFileDirectory>
     <VersionFile>$(VersionFileDirectory)Version.generated.cs</VersionFile>
     <GitExecutable>&quot;C:\Program Files (x86)\Git\bin\git.exe&quot;</GitExecutable>
-    <GitDescribeCommand>$(GitExecutable) describe --tags --dirty --all</GitDescribeCommand>
+    <GitDescribeCommand>$(GitExecutable) describe --tags --dirty --long --candidates 1</GitDescribeCommand>
   </PropertyGroup>
 
   <Target Name="_GitDescribe" Returns="DescribeOutput">
@@ -17,12 +17,7 @@
 
   <Target Name="UpdateAssemblyInformationalVersion"
 	  DependsOnTargets="_GitDescribe"
-	  BeforeTargets="BeforeBuild"
-	  Condition="'$(USERNAME)' != 'jenkins'">
-    <!-- current jenkins server is too old for .net 4.5, and this
-         fails on .net 4.0 because we're using Exec's ConsoleToMSBuild
-         property -->
-
+	  BeforeTargets="BeforeBuild">
     <ItemGroup>
       <AssemblyAttributes Include="AssemblyInformationalVersion">
 	<_Parameter1>$(DescribeOutput)</_Parameter1>
