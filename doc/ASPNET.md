@@ -33,6 +33,9 @@
    to run a fixed number of queries per HTTP request.
  * try to avoid `HtmlHelper.RenderAction`, it basically runs the
    entire request pipeline again
+ * rarely do you want a view that accepts an `ICollection<T>`,
+   frequently you end up wanting metadata with that collection and
+   it's nice to have a place to put it from the start
 
 [FluentValidation]: http://fluentvalidation.codeplex.com/
 [NInject]: http://www.ninject.org/
@@ -50,3 +53,22 @@
       extend `MyControl`
 	* `class MyPage : IMyControlOrPage` - make all pages extend
       `MyPage`
+
+### IIS Express
+
+It's nice to bind your dev IIS server to your computer's private IP, not just localhost
+
+http://stackoverflow.com/questions/14881515/vs2012-iis-express-browse-web-site-with-ip-address-rather-than-localhost
+
+* edit `Documents/IISExpress/applicationhost.config` - look to the
+  `<bindings>` section for your site, this controls both IP binding
+  and host header config.
+* add permissions; start cmd.exe as administrator
+
+        netsh http add urlacl url=http://${HOST}:${PORT}/ user=everyone
+        netsh advfirewall firewall add rule name="IISExpressWeb" dir=in protocol=tcp localport=${PORT} profile=private remoteip=localsubnet action=allow
+
+* edit `web.config` to show remote errors
+
+        <system.web>
+          <customErrors mode="Off"/>
