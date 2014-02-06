@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
-namespace Acceleration.Core {
+namespace Acceleration.Disposable {
     /// <summary>
     /// Easily create one-off `IDisposable` instances
     /// </summary>

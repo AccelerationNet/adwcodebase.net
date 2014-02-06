@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Acceleration.Disposable</id>
+    <version>1.0.3</version>
+    <authors>Ryan Davis</authors>
+    <owners>Acceleration.net</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Helpers and convenience methods for `IDisposable`</description>
+    <releaseNotes>Initial</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>utilities</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\Acceleration.Disposable.dll" target="lib\net35" />
+    <file src="bin\Release\Acceleration.Disposable.pdb" target="lib\net35" />
+    <file src="README.md" target="" />
+  </files>
+</package>

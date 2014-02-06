@@ -55,10 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Build\VersioningTests.cs" />
+    <Compile Include="Versioning\VersioningTests.cs" />
     <Compile Include="Collections\CollectionExtensionsTests.cs" />
     <Compile Include="Collections\DictionaryExtensionsTests.cs" />
-    <Compile Include="Core\ReflectionExtensionsTests.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="MappedReader\DataReaderExtensionsTests.cs" />
     <Compile Include="MappedReader\MappedReaderTests.cs" />
@@ -72,25 +71,25 @@
       <Project>{ff8aed0e-33cc-4a6a-9b20-98e2c33b38dd}</Project>
       <Name>Acceleration.Collections</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Acceleration.Disposable\Acceleration.Disposable.csproj">
+      <Project>{5879f468-c67c-4c21-86df-8b58a89ff816}</Project>
+      <Name>Acceleration.Disposable</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Acceleration.MappedReader\Acceleration.MappedReader.csproj">
       <Project>{d3601298-3b3d-4e6b-a9a5-1f3bd08b465a}</Project>
       <Name>Acceleration.MappedReader</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Acceleration.Testing\Acceleration.Testing.csproj">
-      <Project>{7620550d-616d-42ab-9c77-bad077cfe33c}</Project>
-      <Name>Acceleration.Testing</Name>
+    <ProjectReference Include="..\Acceleration.Versioning\Acceleration.Versioning.csproj">
+      <Project>{c7571ee3-510e-49a8-980c-14d6bfb90a86}</Project>
+      <Name>Acceleration.Versioning</Name>
     </ProjectReference>
     <ProjectReference Include="..\Build\Acceleration.Build.csproj">
       <Project>{249975fe-dcbf-402c-a9b6-e7e4c4220b65}</Project>
       <Name>Acceleration.Build</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core\Acceleration.Core.csproj">
-      <Project>{6c36c103-ef08-431e-bba1-eb60a091b575}</Project>
-      <Name>Acceleration.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\Data\" />
+    <Folder Include="Build\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

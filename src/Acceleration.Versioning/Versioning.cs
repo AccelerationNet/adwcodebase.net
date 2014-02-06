@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Acceleration.Extensions;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Acceleration.Build
+namespace Acceleration.Versioning
 {
     /// <summary>
     /// version information
@@ -16,18 +15,15 @@ namespace Acceleration.Build
         string Version { get; }
     }
 
-    internal sealed class VersionInfo : IVersionInfo
-    {
-        public string InformationalVersion { get; set; }
-        public string Version { get; set; }
-    }
-
     /// <summary>
     /// Helpers and extensions to get version information from 
     /// assembly attributes.
     /// </summary>
-    public static class Versioning
+    public class VersionInfo : IVersionInfo
     {
+        public string InformationalVersion { get; set; }
+        public string Version { get; set; }
+        private VersionInfo() { }
         /// <summary>
         /// Version info for the assembly containing <typeparamref name="T"/>
         /// </summary>
@@ -36,8 +32,8 @@ namespace Acceleration.Build
         [SuppressMessage("Gendarme.Rules.Design.Generic",
             "AvoidMethodWithUnusedGenericTypeRule",
             Justification = "simple API is nice")]
-        public static IVersionInfo VersionInfo<T>() {
-            return VersionInfo(typeof(T));
+        public static IVersionInfo Get<T>() {
+            return Get(typeof(T));
         }
 
         /// <summary>
@@ -48,9 +44,9 @@ namespace Acceleration.Build
         [SuppressMessage("Gendarme.Rules.Portability",
             "MonoCompatibilityReviewRule",
             Justification = "checking type == null is fine")]
-        public static IVersionInfo VersionInfo(Type type) {
+        public static IVersionInfo Get(Type type) {
             if (type == null) throw new ArgumentNullException("type");
-            return VersionInfo(type.Assembly);
+            return Get(type.Assembly);
         }
 
         /// <summary>
@@ -58,10 +54,13 @@ namespace Acceleration.Build
         /// </summary>
         /// <param name="assembly"></param>
         /// <returns></returns>
-        public static IVersionInfo VersionInfo(Assembly assembly) {
+        public static IVersionInfo Get(Assembly assembly) {
             if (assembly == null) throw new ArgumentNullException("assembly");
             var v = new VersionInfo();
-            var inf = assembly.GetAttribute<AssemblyInformationalVersionAttribute>();
+            var inf = assembly
+                .GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), true)
+                .Select(m => m as AssemblyInformationalVersionAttribute)
+                .FirstOrDefault(m => m != null);                
             if (inf != null) v.InformationalVersion = inf.InformationalVersion;
             v.Version = assembly.GetName().Version.ToString();
             return v;

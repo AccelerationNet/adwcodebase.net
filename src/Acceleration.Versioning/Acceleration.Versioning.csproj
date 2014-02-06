@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7EA86120-8978-4D68-9517-5B0F995F39AB}</ProjectGuid>
+    <ProjectGuid>{C7571EE3-510E-49A8-980C-14D6BFB90A86}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Acceleration.Core_net35</RootNamespace>
-    <AssemblyName>Acceleration.Core-net35</AssemblyName>
+    <RootNamespace>Acceleration.Versioning</RootNamespace>
+    <AssemblyName>Acceleration.Versioning</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_35</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -26,7 +26,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NET_35</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -39,27 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Core\Data\MappedReader.cs">
-      <Link>Data\MappedReader.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\Disposable.cs">
-      <Link>Disposable.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\Extensions\CollectionExtensions.cs">
-      <Link>Extensions\CollectionExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\Extensions\DataExtensions.cs">
-      <Link>Extensions\DataExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\Extensions\DictionaryExtensions.cs">
-      <Link>Extensions\DictionaryExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\Extensions\ReflectionExtensions.cs">
-      <Link>Extensions\ReflectionExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Versioning.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

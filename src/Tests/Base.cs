@@ -9,12 +9,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests
 {
     [TestClass]
-    public class Base : Acceleration.Testing.MSTestBase
+    public class Base 
     {
         [AssemblyInitialize()]
         public static void AssemblyInit(TestContext context)
         {
-            AssemblyInitialize(context);
+            
         }
     }
 }
