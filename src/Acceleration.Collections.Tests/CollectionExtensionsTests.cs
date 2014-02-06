@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Acceleration.Extensions;
+using Acceleration.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.Core {
+namespace Acceleration.Collections.Tests.Core {
     [TestClass]
-    public class CollectionExtensionsTests : Base {
+    public class CollectionExtensionsTests {
         
         [TestMethod]
         public void Add() {

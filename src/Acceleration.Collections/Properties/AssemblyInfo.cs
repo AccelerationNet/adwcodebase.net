@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Acceleration.MappedReader")]
+[assembly: AssemblyTitle("Acceleration.Collections")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Acceleration.net")]
-[assembly: AssemblyProduct("Acceleration.MappedReader")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Acceleration.Collections")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2f39be2f-849e-453b-a199-b39b4801fc2a")]
+[assembly: Guid("f0091fc3-8f5f-4493-8c9e-dc356462b3de")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,7 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1.0")]
-[assembly: AssemblyFileVersion("1.0.1.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: CLSCompliant(true)]
-[assembly: InternalsVisibleTo("Acceleration.MappedReader.Tests")]

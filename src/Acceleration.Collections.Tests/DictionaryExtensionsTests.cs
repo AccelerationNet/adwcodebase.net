@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Acceleration.Extensions;
-
+using Acceleration.Collections;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.Core {
+namespace Acceleration.Collections.Tests.Core {
     [TestClass]
-    public class DictionaryExtensionsTests : Base {
+    public class DictionaryExtensionsTests {
 
         IDictionary<int, int> dict;
 
