@@ -5,15 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using System.Data;
-using Acceleration.Extensions;
+using Acceleration.MappedReader;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests.Core {
+namespace Acceleration.MappedReader.Tests {
     [TestClass]
-    public class DataExtensionsTests : Base {
+    public class DataExtensionsTests {
 
         Mock<IDataReader> MockReader;
         IDataReader Reader { get { return MockReader.Object; } }
+
+        const string TEST_STRING = "foo";
+        const int TEST_INT = 42;
+        const decimal TEST_DECIMAL = 42.0m;
+        const double TEST_DOUBLE = 3.14;
+        DateTime TEST_DATETIME = DateTime.Now;
+
 
         [TestInitialize]
         public void SetupMocks() {

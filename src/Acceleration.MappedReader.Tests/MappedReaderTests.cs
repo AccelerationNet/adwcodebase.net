@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Acceleration.Core.Data;
-using Acceleration.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Tests.Core.Data {
+namespace Acceleration.MappedReader.Tests {
     [TestClass]
-    public class MappedReaderTests : Base {
+    public class MappedReaderTests {
         Mock<IDataReader> MockReader;
         IDataReader Reader { get { return MockReader.Object; } }
         IMappedReader Map;
 
+        const string TEST_STRING = "foo";
+        const int TEST_INT = 42;
 
         [TestInitialize]
         public void Setup() {
