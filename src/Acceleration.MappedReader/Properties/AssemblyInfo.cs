@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.1.0")]
 [assembly: AssemblyFileVersion("1.0.1.0")]
 [assembly: CLSCompliant(true)]
-[assembly: InternalsVisibleTo("Acceleration.MappedReader.Tests")]
+[assembly: InternalsVisibleTo("Tests")]

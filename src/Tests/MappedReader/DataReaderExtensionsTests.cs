@@ -8,7 +8,7 @@ using System.Data;
 using Acceleration.MappedReader;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acceleration.MappedReader.Tests {
+namespace Tests.MappedReader {
     [TestClass]
     public class DataExtensionsTests {
 

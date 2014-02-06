@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Acceleration.MappedReader;
 
-namespace Acceleration.MappedReader.Tests {
+namespace Tests.MappedReader {
     [TestClass]
     public class MappedReaderTests {
         Mock<IDataReader> MockReader;

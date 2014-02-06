@@ -8,11 +8,30 @@
     <Configuration>Debug</Configuration>
     <Sln>src\Acceleration.sln</Sln>
     <AnalyzeAssemblies>src\Tests\bin\Debug\Accel*.dll</AnalyzeAssemblies>
-    <MSTestFile>src\Tests\bin\Debug\Tests.dll</MSTestFile>
+    <MSTestFile>src/Tests/bin/Debug/Tests.dll</MSTestFile>
+    <LibToPackage>Acceleration.Collections</LibToPackage>
   </PropertyGroup>
 
   <Target Name="Docs" AfterTargets="Jenkins">
     <Exec Command="tools\doxygen.exe doxyfile"/>
   </Target>
 
+  <Target Name="NugetPackage">
+    <MakeDir Directories="$(BuildArtifactsDir)"/>
+
+    <!-- find nuget binary-->
+    <ItemGroup>
+      <NugetBinaries Include="src\packages\**\nuget.exe"/>
+      <DllsToMerge Include="$(MergeSource)*.dll"/>
+    </ItemGroup>
+    <CreateProperty Value="@(NugetBinaries)">
+      <Output TaskParameter="Value" PropertyName="NugetBinary" />
+    </CreateProperty>
+
+    <MSBuild Projects="src\$(LibToPackage)\$(LibToPackage).csproj"
+	     Properties="Configuration=Release" />
+    
+    <Exec Command="$(NugetBinary) pack src\$(LibToPackage)\$(LibToPackage).nuspec -OutputDirectory $(BuildArtifactsDir)" />
+  </Target>
+  
 </Project>

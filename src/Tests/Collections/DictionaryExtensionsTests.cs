@@ -7,7 +7,7 @@ using Acceleration.Collections;
 using Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acceleration.Collections.Tests.Core {
+namespace Tests.Collections {
     [TestClass]
     public class DictionaryExtensionsTests {
 

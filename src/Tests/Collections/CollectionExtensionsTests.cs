@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Acceleration.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Acceleration.Collections.Tests.Core {
+namespace Tests.Collections {
     [TestClass]
     public class CollectionExtensionsTests {
         

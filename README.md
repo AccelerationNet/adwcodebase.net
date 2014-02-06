@@ -15,6 +15,13 @@ We have MSBuild targets setup:
 
 ## How to use
 
+We publish packages to nuget, install from there:
+
+* Acceleration.MappedReader
+* Acceleration.Collections
+
+For the rest:
+
  * checkout `adwcodebase.net` in the same folder with working copies
    of your other .NET projects
     
@@ -26,10 +33,6 @@ We have MSBuild targets setup:
    `adwcodebase.net` checkout and pick the `csproj` file for the
    library you want to use
    
-## Future
-
-If these libraries stabilize, then we can publish them to nuget/github
-and use stock nuget for easier inclusion in .NET projects
     
 ## Contents
 
@@ -46,7 +49,5 @@ See each project's readme for more information.
  * make extension methods when it feels like you're adding missing
    functionality; a lot of the time it makes more sense to just use a
    static method.
- * put extension methods in the `Acceleration.Extensions`
  * put a `README.md` in each project
  * write unit tests
- * use nuget conventions to enable nuget deployment later
