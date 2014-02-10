@@ -2,10 +2,11 @@
 <package >
   <metadata>
     <id>Acceleration.Disposable</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <authors>Ryan Davis</authors>
     <owners>Acceleration.net</owners>
-    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/AccelerationNet/adwcodebase.net/tree/master/src/Acceleration.Disposable</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helpers and convenience methods for `IDisposable`</description>
     <releaseNotes>Initial</releaseNotes>
