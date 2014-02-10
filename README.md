@@ -28,8 +28,9 @@ See each project's readme for more information.
 
 ## Guidelines
 
- * make extension methods when it feels like you're adding missing
-   functionality; a lot of the time it makes more sense to just use a
-   static method.
- * put a `README.md` in each project
- * write unit tests
+* make extension methods when it feels like you're adding missing
+  functionality; a lot of the time it makes more sense to just use a
+  static method.
+* put a `README.md` in each project
+* write unit tests
+* we mirror this on github, so nothing sensitive!
