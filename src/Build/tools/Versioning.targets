@@ -4,8 +4,8 @@
   <PropertyGroup>
     <VersionFileDirectory>Properties\</VersionFileDirectory>
     <VersionFile>$(VersionFileDirectory)Version.generated.cs</VersionFile>
-    <GitExecutable>&quot;C:\Program Files (x86)\Git\bin\git.exe&quot;</GitExecutable>
-    <GitDescribeCommand>$(GitExecutable) describe --tags --dirty --long --candidates 1</GitDescribeCommand>
+    <GitExecutable>C:\Program Files (x86)\Git\bin\git.exe</GitExecutable>
+    <GitDescribeCommand>&quot;$(GitExecutable)&quot; describe --tags --dirty --long --candidates 1</GitDescribeCommand>
   </PropertyGroup>
 
   <Target Name="_GitDescribe" Returns="DescribeOutput">
@@ -17,8 +17,9 @@
 
   <Target Name="UpdateAssemblyInformationalVersion"
 	  DependsOnTargets="_GitDescribe"
-	  BeforeTargets="BeforeBuild"
+	  AfterTargets="BeforeBuild"
 	  Condition="Exists('$(GitExecutable)')">
+    <Message Text="### UpdateAssemblyInformationalVersion ###"  Importance="high" />
     <ItemGroup>
       <AssemblyAttributes Include="AssemblyInformationalVersion">
 	<_Parameter1>$(DescribeOutput)</_Parameter1>
