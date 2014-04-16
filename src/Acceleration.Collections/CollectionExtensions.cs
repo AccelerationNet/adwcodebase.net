@@ -35,5 +35,18 @@ namespace Acceleration.Collections {
             if (collection == null) throw new ArgumentNullException("collection");
             return collection.Add(items.AsEnumerable());
         }
+
+        /// <summary>
+        /// pick a random element from the collection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="coll"></param>
+        /// <param name="rand">if null, a new `Random` will be created.</param>
+        /// <returns></returns>
+        public static T RandomElement<T>(this ICollection<T> coll, Random rand = null) {
+            if (coll == null) { throw new ArgumentNullException("coll"); }
+            if (rand == null) rand = new Random();
+            return coll.ElementAt(rand.Next(coll.Count));
+        }
     }
 }
