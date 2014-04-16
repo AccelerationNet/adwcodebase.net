@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Acceleration.Enums</id>
+    <version>1.0.0</version>
+    <authors>Ryan Davis</authors>
+    <owners>Acceleration.net</owners>
+    <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/AccelerationNet/adwcodebase.net/tree/master/src/Acceleration.Enums</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Helpers and convenience methods for working with enums.</description>
+    <releaseNotes>Initial</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>utilities</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\Acceleration.Enums.dll" target="lib\net35" />
+    <file src="bin\Release\Acceleration.Enums.pdb" target="lib\net35" />
+    <file src="README.md" target="" />
+  </files>
+</package>

@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\EnumExtensionTests.cs" />
     <Compile Include="Versioning\VersioningTests.cs" />
     <Compile Include="Collections\CollectionExtensionsTests.cs" />
     <Compile Include="Collections\DictionaryExtensionsTests.cs" />
@@ -74,6 +75,10 @@
     <ProjectReference Include="..\Acceleration.Disposable\Acceleration.Disposable.csproj">
       <Project>{5879f468-c67c-4c21-86df-8b58a89ff816}</Project>
       <Name>Acceleration.Disposable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Acceleration.Enums\Acceleration.Enums.csproj">
+      <Project>{67d7b08b-0d68-407b-86a9-d23a7cede863}</Project>
+      <Name>Acceleration.Enums</Name>
     </ProjectReference>
     <ProjectReference Include="..\Acceleration.MappedReader\Acceleration.MappedReader.csproj">
       <Project>{d3601298-3b3d-4e6b-a9a5-1f3bd08b465a}</Project>
