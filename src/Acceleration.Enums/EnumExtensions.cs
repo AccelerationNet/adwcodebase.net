@@ -62,26 +62,51 @@ namespace Acceleration.Enums
             if (string.IsNullOrEmpty(name)) {
                 throw new ArgumentNullException("name");
             }
+            Nullable<T> res;
+            var ok = name.TryParseToEnum<T>(out res);
+
+            if (ok) return res.Value;
+
+            // no dice
+            throw new KeyNotFoundException(string.Format("{0} is not defined in type of enum {1}", name, typeof(T).Name));
+        }
+
+        /// <summary>
+        /// Try to parse a string to the enum
+        /// </summary>
+        /// <exception cref="ArgumentException">If the type is not an enum</exception>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="name"></param>
+        /// <param name="result"></param>
+        /// <returns>true if we parsed ok, false if no match was possible</returns>
+        public static bool TryParseToEnum<T>(this string name, out Nullable<T> result)
+        where T: struct{
+            result = null;
+            if (string.IsNullOrEmpty(name)) return false;
+
             var type = typeof(T);
             CheckEnumType(type);
+            
 
             // got a direct match?
             if (Enum.IsDefined(type, name)) {
-                return (T)Enum.Parse(type, name);
+                result = (T)Enum.Parse(type, name);
+            }
+            else {
+                // search for case-insensitve or space-insensitive matches
+                var match = Enum.GetNames(type)
+                    .FirstOrDefault(n => {
+                        return n.Equals(name, StringComparison.OrdinalIgnoreCase)
+                            || n.Equals(name.Replace(" ", ""), StringComparison.OrdinalIgnoreCase);
+                    });
+
+                if (match != null) {
+                    result = (T)Enum.Parse(type, match);
+                    return true;
+                }
             }
 
-            // search for case-insensitve or space-insensitive matches
-            var match = Enum.GetNames(type)
-                .FirstOrDefault(n => {
-                    return n.Equals(name, StringComparison.OrdinalIgnoreCase)
-                        || n.Equals(name.Replace(" ", ""), StringComparison.OrdinalIgnoreCase);
-                });
-
-            if (match != null)
-                return (T)Enum.Parse(type, match);
-
-            // no dice
-            throw new KeyNotFoundException(string.Format("{0} is not defined in type of enum {1}", name, type.Name));
+            return result != null;
         }
 
         

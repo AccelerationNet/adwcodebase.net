@@ -31,6 +31,13 @@ namespace Tests.Enums {
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TryParseToEnumThrowsWithBadType() {
+            NotAnEnum? x;
+            "foo".TryParseToEnum<NotAnEnum>(out x);
+        }
+
+        [TestMethod]
         public void GetFlags() {
             var combo = Testing.A | Testing.C;
             var f = combo.GetFlags().ToList();
@@ -82,6 +89,31 @@ namespace Tests.Enums {
         [TestMethod]
         public void ParseToEnumNotInEnumThrows() {
             "asdf".ParseToEnum<Testing>();
+        }
+
+        void AssertTryParse(string input, Testing? expected) {
+            Testing? x = null;
+            var res = input.TryParseToEnum<Testing>(out x);
+            Assert.AreEqual(expected != null, res);
+            Assert.AreEqual(expected, x);
+
+        }
+
+        [TestMethod]
+        public void TryParseToEnum() {
+            foreach (var input in new[]{"A", "a", " a "}) {
+                AssertTryParse(input, Testing.A);
+            }
+
+            foreach (var input in new[] { "foobar", "foo bar", "FooBar" }) {
+                AssertTryParse(input, Testing.FooBar);
+            }
+        }
+        [TestMethod]
+        public void TryParseToEnumFailures() {
+            foreach (var input in new[] { "", null, "  ", "asdf" }) {
+                AssertTryParse(input, null);
+            }
         }
     }
 }
