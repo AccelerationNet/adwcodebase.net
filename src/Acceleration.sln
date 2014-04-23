@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Versioning", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Enums", "Acceleration.Enums\Acceleration.Enums.csproj", "{67D7B08B-0D68-407B-86A9-D23A7CEDE863}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Hmac", "Acceleration.Hmac\Acceleration.Hmac.csproj", "{C690A932-9487-4DBC-A601-3260C322EEE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Hmac.Tests", "Acceleration.Hmac.Tests\Acceleration.Hmac.Tests.csproj", "{A930AD6B-F2EC-478D-88D5-B4C82E9E5438}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,14 @@ Global
 		{67D7B08B-0D68-407B-86A9-D23A7CEDE863}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67D7B08B-0D68-407B-86A9-D23A7CEDE863}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67D7B08B-0D68-407B-86A9-D23A7CEDE863}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C690A932-9487-4DBC-A601-3260C322EEE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C690A932-9487-4DBC-A601-3260C322EEE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C690A932-9487-4DBC-A601-3260C322EEE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C690A932-9487-4DBC-A601-3260C322EEE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A930AD6B-F2EC-478D-88D5-B4C82E9E5438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A930AD6B-F2EC-478D-88D5-B4C82E9E5438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A930AD6B-F2EC-478D-88D5-B4C82E9E5438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A930AD6B-F2EC-478D-88D5-B4C82E9E5438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
