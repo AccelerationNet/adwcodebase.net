@@ -13,6 +13,7 @@
     <ItemGroup>
       <NUnitBinaries Include="src\packages\**\nunit-console.exe;packages\**\nunit-console.exe"/>
       <GendarmeBinaries Include="src\packages\**\gendarme.exe;packages\**\gendarme.exe"/>
+      <NugetBinaries Include="src\packages\**\nuget.exe"/>
     </ItemGroup>
 
     <CreateProperty Value="@(NUnitBinaries)">
@@ -23,6 +24,9 @@
       <Output TaskParameter="Value" PropertyName="GendarmeBinary" />
     </CreateProperty>
 
+    <CreateProperty Value="@(NugetBinaries)">
+      <Output TaskParameter="Value" PropertyName="NugetBinary" />
+    </CreateProperty>
   </Target>
 
 

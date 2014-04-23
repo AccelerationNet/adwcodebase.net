@@ -16,22 +16,25 @@
     <Exec Command="tools\doxygen.exe doxyfile"/>
   </Target>
 
-  <Target Name="NugetPackage">
+  <Target Name="package" DependsOnTargets="_findBinaries">
     <MakeDir Directories="$(BuildArtifactsDir)"/>
-
-    <!-- find nuget binary-->
     <ItemGroup>
-      <NugetBinaries Include="src\packages\**\nuget.exe"/>
-      <DllsToMerge Include="$(MergeSource)*.dll"/>
+      <OldPacks Include="$(BuildArtifactsDir)\*.nupkg" />
     </ItemGroup>
-    <CreateProperty Value="@(NugetBinaries)">
-      <Output TaskParameter="Value" PropertyName="NugetBinary" />
-    </CreateProperty>
-
+    <Delete Files="@(OldPacks)" />
+    
     <MSBuild Projects="src\$(LibToPackage)\$(LibToPackage).csproj"
 	     Properties="Configuration=Release" />
     
-    <Exec Command="$(NugetBinary) pack src\$(LibToPackage)\$(LibToPackage).nuspec -OutputDirectory $(BuildArtifactsDir)" />
+    <Exec Command="$(NugetBinary) pack src\$(LibToPackage)\$(LibToPackage).nuspec -OutputDirectory $(BuildArtifactsDir) -NonInteractive" />
+  </Target>
+
+  <Target Name="push" DependsOnTargets="_findBinaries">
+    <ItemGroup>
+      <NugetPacks Include="$(BuildArtifactsDir)$(LibToPackage).*"/>
+    </ItemGroup>
+    
+    <Exec Command="$(NugetBinary) push @(NugetPacks) -NonInteractive" />
   </Target>
   
 </Project>
