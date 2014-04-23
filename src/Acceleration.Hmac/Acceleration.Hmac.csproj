@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Hasher.cs" />
     <Compile Include="HmacAttribute.cs" />
+    <Compile Include="HashMismatchException.cs" />
     <Compile Include="IHmac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,6 +52,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Acceleration.Hmac.nuspec" />
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -70,3 +70,4 @@ to detect if a set of values has been modified.
   hash and compare with the one already calculated
 * `string Hasher.ComputeHash(secret, datum)` - static method that does
   the actual hash calculations
+* `HashMismatchException` - basic exception for throwing hash errors
