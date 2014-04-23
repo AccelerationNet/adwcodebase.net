@@ -8,7 +8,7 @@
     <Configuration>Debug</Configuration>
     <Sln>src\Acceleration.sln</Sln>
     <AnalyzeAssemblies>src\Tests\bin\Debug\Accel*.dll</AnalyzeAssemblies>
-    <MSTestFile>src/Tests/bin/Debug/Tests.dll</MSTestFile>
+    <MSTestFile>src/Tests/bin/Debug/Tests.dll src/Acceleration.Hmac.Tests/bin/Debug/Acceleration.Hmac.Tests.dll</MSTestFile>
     <LibToPackage>Acceleration.Collections</LibToPackage>
   </PropertyGroup>
 
