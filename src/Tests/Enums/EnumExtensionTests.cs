@@ -115,5 +115,22 @@ namespace Tests.Enums {
                 AssertTryParse(input, null);
             }
         }
+
+        [TestMethod]
+        public void EnumEquals() {
+            foreach (var input in new[] { "A", "a", " a " }) {
+                Assert.IsTrue(input.EnumEquals(Testing.A));
+            }
+
+            foreach (var input in new[] { "foobar", "foo bar", "FooBar" }) {
+                Assert.IsTrue(input.EnumEquals(Testing.FooBar));
+            }
+        }
+        [TestMethod]
+        public void EnumEqualsFailures() {
+            foreach (var input in new[] { "", null, "  ", "asdf" }) {
+                Assert.IsFalse(input.EnumEquals(Testing.A));
+            }
+        }
     }
 }

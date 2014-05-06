@@ -108,7 +108,22 @@ namespace Acceleration.Enums
 
             return result != null;
         }
+        /// <summary>
+        /// Test if a string parses to and matches an enum value
+        /// </summary>
+        /// <exception cref="ArgumentException">If the type is not an enum</exception>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="a">string to test</param>
+        /// <param name="b">value to match</param>
+        /// <returns>true if <paramref name="a"/> parses to <typeparamref name="T"/> and that value equals <paramref name="b"/>. False in all other cases, including nulls</returns>
+        public static bool EnumEquals<T>(this string a, T b) where T:struct{
+            Nullable<T> res = null;
 
-        
+            if (a.TryParseToEnum<T>(out res)) {
+                return EqualityComparer<T>.Default.Equals(res.Value,b);
+            }
+
+            return false;
+        }
     }
 }

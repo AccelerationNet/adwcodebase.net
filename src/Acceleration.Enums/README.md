@@ -11,3 +11,5 @@ access.
   casing or whitespace
 * `ParseToEnum<T>(string)` - Parse this string into an enum using
   `TryParseToEnum`, but throws exceptions on failure
+* `EnumEquals<T>(string, T)` - Test if a string parses to and matches an
+  enum value
