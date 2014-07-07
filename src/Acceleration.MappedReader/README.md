@@ -6,7 +6,8 @@ Defines some extension methods on `IDataReader` to efficiently pull
 out values based on column name, not column index.
 
 * `T IDataReader.GetAs<T>(int)` - Fetch data from the reader as the
-  given type
+  given type. If mapping fails, throws a `BadMappingException` with
+  details.
 * `IMappedReader IDataReader.MappedReader()` - Make a helper object to fetch and
   cast values by name instead of ordinal
 * `T IMappedReader.GetAs<T>(int)` - Cast and fetch the value from the

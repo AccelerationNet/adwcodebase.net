@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Acceleration.MappedReader</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>Ryan Davis</authors>
     <owners>Acceleration.net</owners>
     <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helpers and convenience methods for pulling data out
     of `IDataReader`s</description>
-    <releaseNotes>Initial</releaseNotes>
+    <releaseNotes>add `BadMappingException` with details on invalid casts</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>orm</tags>
   </metadata>

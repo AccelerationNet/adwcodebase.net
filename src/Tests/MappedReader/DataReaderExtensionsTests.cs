@@ -78,5 +78,25 @@ namespace Tests.MappedReader {
         public void GetAsNoMapping() {
             Reader.GetAs<IDataReader>(1);       
         }
+
+        const int ERROR_DECIMAL = 5;
+        [TestMethod]
+        public void BadMappingExceptionHasDetails() {
+            MockReader.Setup(x => x.GetDecimal(ERROR_DECIMAL))
+                .Throws<InvalidCastException>();
+            MockReader.Setup(x => x.GetName(ERROR_DECIMAL)).Returns("error");     
+            MockReader.Setup(x => x.GetValue(ERROR_DECIMAL)).Returns("bad");
+            try {
+                Reader.GetAs<decimal>(ERROR_DECIMAL);
+                Assert.Fail();
+            }
+            catch (BadMappingException bme) {
+                Assert.AreEqual("bad", bme.Value);
+                Assert.IsInstanceOfType(bme.Value, typeof(string));
+                Assert.AreEqual(typeof(decimal), bme.RequestedType);
+                Assert.AreEqual("error", bme.ColumnName);
+                Assert.AreEqual("Failed to convert column `error` from System.String `bad` to System.Decimal", bme.Message);
+            }
+        }
     }
 }

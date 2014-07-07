@@ -82,8 +82,15 @@ namespace Acceleration.MappedReader {
                     string.Format("type {0} is not supported, must be one of:\n\n{1}",
                         typeToCoerce, string.Join("\n", supportedKeys)));
             }
-
-            return Converters[typeToCoerce](reader, ordinal);
+            try {
+                return Converters[typeToCoerce](reader, ordinal);
+            }
+            catch (InvalidCastException ex){
+                var actual = reader.GetValue(ordinal);
+                var name = reader.GetName(ordinal);
+                throw new BadMappingException(actual, requestedType, name, ex);
+            }
+            
 
         }
         /// <summary>
@@ -107,6 +114,35 @@ namespace Acceleration.MappedReader {
         public static IMappedReader MappedReader(this IDataReader reader) {
             if (reader == null) throw new ArgumentNullException("reader");
             return new MappedReader(reader);
+        }
+    }
+
+    [Serializable]
+    public class BadMappingException : Exception {
+        public object Value { get; private set; }
+        public Type RequestedType { get; private set; }
+        public string ColumnName { get; private set; }
+
+        public BadMappingException() { }
+        public BadMappingException(string message) : base(message) { }
+        public BadMappingException(string message, Exception inner) : base(message, inner) { }
+        protected BadMappingException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context)
+            : base(info, context) { }
+        public BadMappingException(object value, Type type, string columnName, Exception inner)
+            : base(BuildMessage(value, type, columnName), inner) {
+                
+            Value = value;
+            RequestedType = type;
+            ColumnName = columnName;
+        }
+
+        static string BuildMessage(object value, Type type, string columnName) {
+            var valueType = value == null ? null : value.GetType();
+            return string.Format(
+                "Failed to convert column `{0}` from {3} `{1}` to {2}",
+                    columnName, value, type, valueType);
         }
     }
 }
