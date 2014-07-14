@@ -29,7 +29,7 @@
     <Exec Command="$(NugetBinary) pack src\$(LibToPackage)\$(LibToPackage).nuspec -OutputDirectory $(BuildArtifactsDir) -NonInteractive" />
   </Target>
 
-  <Target Name="push" DependsOnTargets="_findBinaries">
+  <Target Name="push" DependsOnTargets="_findBinaries;package">
     <ItemGroup>
       <NugetPacks Include="$(BuildArtifactsDir)$(LibToPackage).*"/>
     </ItemGroup>
