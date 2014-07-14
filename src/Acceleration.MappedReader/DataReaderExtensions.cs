@@ -85,14 +85,24 @@ namespace Acceleration.MappedReader {
             try {
                 return Converters[typeToCoerce](reader, ordinal);
             }
-            catch (InvalidCastException ex){
-                var actual = reader.GetValue(ordinal);
-                var name = reader.GetName(ordinal);
-                throw new BadMappingException(actual, requestedType, name, ex);
+            catch (Exception ex){                
+                var actual = Try(reader.GetValue, ordinal, null);
+                var actualType = Try(reader.GetDataTypeName, ordinal, "?");
+                var name = Try(reader.GetName, ordinal, "?");
+                throw new BadMappingException(actual, requestedType, 
+                    name, actualType, ex);
             }
-            
-
         }
+
+        static T Try<T>(Func<int, T> fn, int ordinal, T defaultValue) {
+            try {
+                return fn(ordinal);
+            }
+            catch (Exception) {
+                return defaultValue;
+            }
+        }
+
         /// <summary>
         /// Fetch data from the reader as the given type
         /// </summary>
@@ -120,6 +130,7 @@ namespace Acceleration.MappedReader {
     [Serializable]
     public class BadMappingException : Exception {
         public object Value { get; private set; }
+        public string ActualType { get; private set; }
         public Type RequestedType { get; private set; }
         public string ColumnName { get; private set; }
 
@@ -130,19 +141,20 @@ namespace Acceleration.MappedReader {
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }
-        public BadMappingException(object value, Type type, string columnName, Exception inner)
-            : base(BuildMessage(value, type, columnName), inner) {
+        public BadMappingException(object value, Type type, string columnName, string actualType, Exception inner)
+            : base(BuildMessage(value, type, columnName, actualType), inner) {
                 
             Value = value;
             RequestedType = type;
             ColumnName = columnName;
+            ActualType = actualType;
         }
 
-        static string BuildMessage(object value, Type type, string columnName) {
+        static string BuildMessage(object value, Type type, string columnName, string actualType) {
             var valueType = value == null ? null : value.GetType();
             return string.Format(
-                "Failed to convert column `{0}` from {3} `{1}` to {2}",
-                    columnName, value, type, valueType);
+                "Failed to convert {4} column `{0}` from {3} `{1}` to {2}",
+                    columnName, value, type, valueType, actualType);
         }
     }
 }

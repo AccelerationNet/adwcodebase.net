@@ -83,8 +83,10 @@ namespace Tests.MappedReader {
         [TestMethod]
         public void BadMappingExceptionHasDetails() {
             MockReader.Setup(x => x.GetDecimal(ERROR_DECIMAL))
-                .Throws<InvalidCastException>();
-            MockReader.Setup(x => x.GetName(ERROR_DECIMAL)).Returns("error");     
+                .Throws<InvalidProgramException>();
+            MockReader.Setup(x => x.GetName(ERROR_DECIMAL)).Returns("error");
+            MockReader.Setup(x => x.GetDataTypeName(ERROR_DECIMAL))
+                .Returns("type");
             MockReader.Setup(x => x.GetValue(ERROR_DECIMAL)).Returns("bad");
             try {
                 Reader.GetAs<decimal>(ERROR_DECIMAL);
@@ -95,7 +97,22 @@ namespace Tests.MappedReader {
                 Assert.IsInstanceOfType(bme.Value, typeof(string));
                 Assert.AreEqual(typeof(decimal), bme.RequestedType);
                 Assert.AreEqual("error", bme.ColumnName);
-                Assert.AreEqual("Failed to convert column `error` from System.String `bad` to System.Decimal", bme.Message);
+                Assert.AreEqual("Failed to convert type column `error` from System.String `bad` to System.Decimal", bme.Message);
+            }
+        }
+
+        [TestMethod]
+        public void BadMappingExceptionWhenValueThrows() {
+            MockReader.Setup(x => x.GetDecimal(ERROR_DECIMAL))
+                .Throws<InvalidProgramException>();            
+            MockReader.Setup(x => x.GetValue(ERROR_DECIMAL))
+                .Throws<InvalidProgramException>();
+            try {
+                Reader.GetAs<decimal>(ERROR_DECIMAL);
+                Assert.Fail();
+            }
+            catch (BadMappingException bme) {
+                Assert.IsNull(bme.Value);
             }
         }
     }

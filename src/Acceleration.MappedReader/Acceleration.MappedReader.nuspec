@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helpers and convenience methods for pulling data out
     of `IDataReader`s</description>
-    <releaseNotes>add `BadMappingException` with details on invalid casts</releaseNotes>
+    <releaseNotes>better error reporting/handling on bad mappings</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>orm</tags>
   </metadata>
