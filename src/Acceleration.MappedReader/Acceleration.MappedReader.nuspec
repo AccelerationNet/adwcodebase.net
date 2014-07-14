@@ -10,7 +10,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helpers and convenience methods for pulling data out
     of `IDataReader`s</description>
-    <releaseNotes>better error reporting/handling on bad mappings</releaseNotes>
+    <releaseNotes><![CDATA[
+* better error reporting/handling on bad mappings,
+* fallback to string parsing if the `IDataReader.Get*` family throws an
+  `InvalidCastException`
+  * e.g. if we errror out calling `GetDecimal` on a field that's a double,
+    catch that, get the field as a string, then call `Convert.ToDecimal`
+]]>
+    </releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>orm</tags>
   </metadata>

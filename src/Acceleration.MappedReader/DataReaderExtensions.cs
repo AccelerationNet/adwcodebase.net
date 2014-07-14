@@ -49,6 +49,21 @@ namespace Acceleration.MappedReader {
         
         }
 
+        static IDictionary<Type, Func<string, object>> Parsers = MakeParsers();
+
+        static IDictionary<Type, Func<string, object>> MakeParsers() {
+            var map = new Dictionary<Type, Func<string, object>>();
+
+            map[typeof(DateTime)] = (s) => Convert.ToDateTime(s);
+            map[typeof(decimal)] = (s) => Convert.ToDecimal(s);
+            map[typeof(double)] = (s) => Convert.ToDouble(s);
+            map[typeof(bool)] = (s) => Convert.ToBoolean(s);
+            map[typeof(int)] = (s) => Convert.ToInt32(s);
+            map[typeof(string)] = (s) => s;
+
+            return map;
+        }
+
         /// <summary>
         /// Fetch data from the reader as the given type
         /// </summary>
@@ -83,7 +98,12 @@ namespace Acceleration.MappedReader {
                         typeToCoerce, string.Join("\n", supportedKeys)));
             }
             try {
-                return Converters[typeToCoerce](reader, ordinal);
+                try {
+                    return Converters[typeToCoerce](reader, ordinal);
+                }
+                catch (InvalidCastException) {
+                    return Parsers[typeToCoerce](reader.GetString(ordinal));
+                }
             }
             catch (Exception ex){                
                 var actual = Try(reader.GetValue, ordinal, null);

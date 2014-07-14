@@ -115,5 +115,16 @@ namespace Tests.MappedReader {
                 Assert.IsNull(bme.Value);
             }
         }
+
+        [TestMethod]
+        public void DecimalFallbackToString() {
+            MockReader.Setup(x => x.GetDecimal(ERROR_DECIMAL))
+                .Throws<InvalidCastException>();
+            MockReader.Setup(x => x.GetDouble(ERROR_DECIMAL))
+                .Throws<InvalidCastException>();
+            MockReader.Setup(x => x.GetString(ERROR_DECIMAL)).Returns("20");
+            Assert.AreEqual(20, Reader.GetAs<decimal>(ERROR_DECIMAL));
+            Assert.AreEqual(20, Reader.GetAs<decimal?>(ERROR_DECIMAL));
+        }
     }
 }
