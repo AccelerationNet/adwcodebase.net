@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Acceleration.MappedReader</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <authors>Ryan Davis</authors>
     <owners>Acceleration.net</owners>
     <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
