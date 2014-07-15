@@ -10,12 +10,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helpers and convenience methods for pulling data out
     of `IDataReader`s</description>
-    <releaseNotes><![CDATA[
-* better error reporting/handling on bad mappings,
-* fallback to string parsing if the `IDataReader.Get*` family throws an
-  `InvalidCastException`
-  * e.g. if we errror out calling `GetDecimal` on a field that's a double,
-    catch that, get the field as a string, then call `Convert.ToDecimal`
+    <releaseNotes>
+      <![CDATA[
+When falling back to string parsing, use `IDataReader.GetValue` and `ToString`,
+`IDataReader.GetString` can throw `InvalidCastException`s.
 ]]>
     </releaseNotes>
     <copyright>Copyright 2014</copyright>

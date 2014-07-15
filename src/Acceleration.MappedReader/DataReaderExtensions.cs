@@ -102,7 +102,8 @@ namespace Acceleration.MappedReader {
                     return Converters[typeToCoerce](reader, ordinal);
                 }
                 catch (InvalidCastException) {
-                    return Parsers[typeToCoerce](reader.GetString(ordinal));
+                    var obj = reader.GetValue(ordinal);
+                    return Parsers[typeToCoerce](obj.ToString());
                 }
             }
             catch (Exception ex){                
