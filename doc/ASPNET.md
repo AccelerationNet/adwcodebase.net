@@ -74,15 +74,21 @@ It's nice to bind your dev IIS server to your computer's private IP, not just lo
 
 http://stackoverflow.com/questions/14881515/vs2012-iis-express-browse-web-site-with-ip-address-rather-than-localhost
 
-* edit `Documents/IISExpress/applicationhost.config` - look to the
-  `<bindings>` section for your site, this controls both IP binding
-  and host header config.
-* add permissions; start cmd.exe as administrator
+* find a suitable DNS name that resolves to your computer. The host
+  name frequently works, but put something in your `hosts` file if
+  there's no existing name. we'll refer to this as `$HOST`
+* edit `Documents/IISExpress/config/applicationhost.config`
+	* look at `<sites>`, find the `<site>` you want to expose, and
+      look at the `<bindings>` section
+    * there should be a binding for `localhost`, add a copy of that `<binding>` tag, and replace localhost with your `$HOST`
+	* note the port that has been assigned, we'll refer to this as `$PORT`
+* add network permissions; start cmd.exe as administrator
 
         netsh http add urlacl url=http://${HOST}:${PORT}/ user=everyone
         netsh advfirewall firewall add rule name="IISExpressWeb" dir=in protocol=tcp localport=${PORT} profile=private remoteip=localsubnet action=allow
+* restart the visual studio dev server
 
-* edit `web.config` to show remote errors
+* in your site, you may want to edit `web.config` to show remote errors
 
         <system.web>
           <customErrors mode="Off"/>
