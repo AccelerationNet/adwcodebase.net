@@ -103,5 +103,23 @@ namespace Acceleration.Collections {
                 dict[key] = valueFn(key);
             return (TValue) dict[key];
         }
+
+        /// <summary>
+        /// Update the dictionary from another source. Overwrites keys that exist in both.
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dict"></param>
+        /// <param name="other"></param>
+        /// <returns>the updated dictionary</returns>
+        public static IDictionary<TKey, TValue> Update<TKey, TValue>(this IDictionary<TKey, TValue> dict, IEnumerable<KeyValuePair<TKey, TValue>> source) {
+            if (dict == null) throw new ArgumentNullException("dict");
+            if (source == null) throw new ArgumentNullException("source");
+
+            foreach (var item in source) {
+                dict[item.Key] = item.Value;
+            }
+            return dict;
+        }
     }
 }

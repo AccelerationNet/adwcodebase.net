@@ -52,6 +52,42 @@ namespace Tests.Collections {
             fetcher.Setup(f => f.Run(0)).Throws<IndexOutOfRangeException>();
             dict.Ensure(0, fetcher.Object.Run);
         }
+
+        [TestMethod]
+        public void Update() {
+            Assert.AreEqual(0, dict.Count);
+            var d = dict.Update(new Dictionary<int, int> { { 0, 0 }, {1,1} });
+            Assert.AreSame(dict, d);
+            Assert.AreEqual(2, dict.Count);
+            Assert.AreEqual(0, dict[0]);
+            Assert.AreEqual(1, dict[1]);
+
+            dict.Update(new Dictionary<int, int>());
+            Assert.AreEqual(2, dict.Count);
+            
+        }
+
+        [TestMethod]
+        public void Update_Overwrites() {
+            Assert.AreEqual(0, dict.Count);
+            dict.Add(0, 0);
+            Assert.AreEqual(0, dict[0]);
+            dict.Update(new Dictionary<int, int> {{0, 1}});
+            Assert.AreEqual(1, dict[0]);            
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Update_ThrowIfSourceIsNull() {            
+            dict.Update(null);            
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Update_ThrowIfDictIsNull() {
+            IDictionary<int, int> d = null;
+            d.Update(dict);
+        }
     }
 
     /// <summary>

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Acceleration.Collections</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <authors>Ryan Davis</authors>
     <owners>Acceleration.net</owners>
     <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
@@ -10,7 +10,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helpers and convenience methods for
     `System.Collections`</description>
-    <releaseNotes>add `ICollection&lt;T&gt;.RandomElement(n)` - pull N unique random elements</releaseNotes>
+    <releaseNotes>
+      `IDictionary&lt;Tk,Tv&gt;.Update(IEnumerable&lt;KeyValuePair&lt;TKey, TValue&gt;&gt;)` - Update the dictionary from another source. Overwrites keys that exist in both
+    </releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>utilities</tags>
   </metadata>

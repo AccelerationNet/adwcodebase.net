@@ -14,3 +14,6 @@ Helpers and convenience methods for `System.Collections`
   this dictionary, setting it if needed
 * `IDictionary.Ensure(Tk, Func<Tk,Tv>)` - Ensure this key is in
   this dictionary, setting it if needed
+* `IDictionary<Tk,Tv>.Update(IEnumerable<KeyValuePair<TKey,
+  TValue>>)` - Update the dictionary from another source. Overwrites
+  keys that exist in both
