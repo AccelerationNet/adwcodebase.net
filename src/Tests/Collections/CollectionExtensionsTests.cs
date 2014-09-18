@@ -48,6 +48,44 @@ namespace Tests.Collections {
             var v2 = c.RandomElement(new Random(42));
             Assert.AreEqual(v, v2);
         }
+
+        [TestMethod]
+        public void RandomElementMulti() {
+            var c = new[] { 1, 2, 3 };
+            var res = c.RandomElement(2);
+            Assert.AreEqual(2, res.Count);
+            Assert.AreEqual(2, res.Distinct().Count(), "doesn't return duplicates");
+            Assert.IsTrue(res.All(x => c.Contains(x)), "is a subset of the source");
+        }
+
+        [TestMethod]
+        public void RandomElementMulti_AskForTooMany() {
+            var c = new[] { 1, 2, 3 };
+            var res = c.RandomElement(20);
+            Assert.AreEqual(3, res.Count);
+            Assert.IsTrue(res.All(x => c.Contains(x)), "matches the source");
+            Assert.AreNotSame(res, c, "doesn't return a reference to the input");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void RandomElementMulti_ThrowsWhenNull() {
+            ICollection<int> c = null;
+            c.RandomElement(1);            
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void RandomElementMulti_ThrowsWhenWeird() {
+            var c = new[] { 1, 2, 3 };
+            c.RandomElement(0);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void RandomElementMulti_ThrowsWhenWeird2() {            
+            var c = new[] { 1, 2, 3 };
+            c.RandomElement(-1);
+        }
         
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]

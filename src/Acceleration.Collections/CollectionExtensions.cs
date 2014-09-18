@@ -45,8 +45,33 @@ namespace Acceleration.Collections {
         /// <returns></returns>
         public static T RandomElement<T>(this ICollection<T> coll, Random rand = null) {
             if (coll == null) { throw new ArgumentNullException("coll"); }
-            if (rand == null) rand = new Random();
+            if (rand == null) { rand = new Random(); }
             return coll.ElementAt(rand.Next(coll.Count));
+        }
+
+        /// <summary>
+        /// pick N unique random elements from the collection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="coll"></param>
+        /// <param name="count">maximum number of elements to return.</param>
+        /// <param name="rand">if null, a new `Random` will be created.</param>
+        /// <returns></returns>
+        public static ICollection<T> RandomElement<T>(this ICollection<T> coll, int count, Random rand = null) {
+            if (coll == null) { throw new ArgumentNullException("coll"); }
+            if (count <= 0) { throw new ArgumentOutOfRangeException("count", "must be greater than 0"); }
+            if (count >= coll.Count()) return new List<T>(coll);
+
+            if (rand == null) { rand = new Random(); }            
+            var chosen = new List<T>(count);
+            while (chosen.Count < count) {
+                var el = coll.RandomElement(rand);
+                if (!chosen.Contains(el)) {
+                    chosen.Add(el);
+                }
+            }
+
+            return chosen;
         }
     }
 }
