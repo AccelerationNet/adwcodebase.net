@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Acceleration.Collections</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <authors>Ryan Davis</authors>
     <owners>Acceleration.net</owners>
     <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helpers and convenience methods for
     `System.Collections`</description>
-    <releaseNotes>Initial</releaseNotes>
+    <releaseNotes>add `ICollection&lt;T&gt;.RandomElement(n)` - pull N unique random elements</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>utilities</tags>
   </metadata>
