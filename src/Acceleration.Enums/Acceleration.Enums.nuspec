@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>Acceleration.Enums</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>Ryan Davis</authors>
     <owners>Acceleration.net</owners>
     <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/AccelerationNet/adwcodebase.net/tree/master/src/Acceleration.Enums</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helpers and convenience methods for working with enums.</description>
-    <releaseNotes>add `EnumEquals`</releaseNotes>
+    <releaseNotes>static analysis fixes</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>utilities</tags>
   </metadata>
