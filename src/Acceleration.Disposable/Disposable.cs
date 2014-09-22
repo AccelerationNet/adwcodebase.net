@@ -9,6 +9,8 @@ namespace Acceleration.Disposable {
     /// Easily create one-off `IDisposable` instances
     /// </summary>
     /// <remarks>Adapted from http://stackoverflow.com/questions/676746/custom-html-helpers-create-helper-with-using-statement-support</remarks>
+    [SuppressMessage("Gendarme.Rules.Naming", "AvoidRedundancyInTypeName",
+            Justification = "best I can come up with")]
     public sealed class DisposableHelper : IDisposable {
         Action onDone { get; set; }
 

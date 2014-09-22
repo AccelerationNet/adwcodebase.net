@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -79,6 +80,8 @@ namespace Acceleration.Enums
         /// <param name="name"></param>
         /// <param name="result"></param>
         /// <returns>true if we parsed ok, false if no match was possible</returns>
+        [SuppressMessage("Gendarme.Rules.Design.Generic", "AvoidMethodWithUnusedGenericTypeRule",
+            Justification = "used as an out parameter")]
         public static bool TryParseToEnum<T>(this string name, out Nullable<T> result)
         where T: struct{
             result = null;
@@ -97,7 +100,7 @@ namespace Acceleration.Enums
                 var match = Enum.GetNames(type)
                     .FirstOrDefault(n => {
                         return n.Equals(name, StringComparison.OrdinalIgnoreCase)
-                            || n.Equals(name.Replace(" ", ""), StringComparison.OrdinalIgnoreCase);
+                            || n.Equals(name.Replace(" ", String.Empty), StringComparison.OrdinalIgnoreCase);
                     });
 
                 if (match != null) {

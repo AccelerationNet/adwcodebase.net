@@ -74,6 +74,8 @@ namespace Acceleration.MappedReader {
         [SuppressMessage("Gendarme.Rules.Portability",
             "MonoCompatibilityReviewRule",
             Justification = "checking type == null is fine")]
+        [SuppressMessage("Gendarme.Rules.Exceptions", "DoNotSwallowErrorsCatchingNonSpecificExceptionsRule",
+            Justification = "we re-throw it wrapped in a BadMappingException")]
         internal static object GetAs(this IDataReader reader, Type requestedType, int ordinal) {
             if (reader == null) throw new ArgumentNullException("reader");
             if (requestedType == null) throw new ArgumentNullException("requestedType");
@@ -114,7 +116,8 @@ namespace Acceleration.MappedReader {
                     name, actualType, ex);
             }
         }
-
+        [SuppressMessage("Gendarme.Rules.Exceptions", "DoNotSwallowErrorsCatchingNonSpecificExceptionsRule",
+            Justification = "only used for generating exception messages")]
         static T Try<T>(Func<int, T> fn, int ordinal, T defaultValue) {
             try {
                 return fn(ordinal);
@@ -147,8 +150,10 @@ namespace Acceleration.MappedReader {
             return new MappedReader(reader);
         }
     }
-
+    
     [Serializable]
+    [SuppressMessage("Gendarme.Rules.Serialization", "ImplementISerializableCorrectlyRule",
+            Justification = "don't care")]
     public class BadMappingException : Exception {
         public object Value { get; private set; }
         public string ActualType { get; private set; }

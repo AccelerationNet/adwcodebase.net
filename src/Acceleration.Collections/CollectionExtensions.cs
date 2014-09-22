@@ -60,7 +60,7 @@ namespace Acceleration.Collections {
         public static ICollection<T> RandomElement<T>(this ICollection<T> coll, int count, Random rand = null) {
             if (coll == null) { throw new ArgumentNullException("coll"); }
             if (count <= 0) { throw new ArgumentOutOfRangeException("count", "must be greater than 0"); }
-            if (count >= coll.Count()) return new List<T>(coll);
+            if (count >= coll.Count) return new List<T>(coll);
 
             if (rand == null) { rand = new Random(); }            
             var chosen = new List<T>(count);

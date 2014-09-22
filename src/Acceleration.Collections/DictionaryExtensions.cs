@@ -112,6 +112,8 @@ namespace Acceleration.Collections {
         /// <param name="dict"></param>
         /// <param name="other"></param>
         /// <returns>the updated dictionary</returns>
+        [SuppressMessage("Gendarme.Rules.Design.Generic", "DoNotExposeNestedGenericSignaturesRule",
+            Justification="various generic dictionary types have no sensible parent class")]
         public static IDictionary<TKey, TValue> Update<TKey, TValue>(this IDictionary<TKey, TValue> dict, IEnumerable<KeyValuePair<TKey, TValue>> source) {
             if (dict == null) throw new ArgumentNullException("dict");
             if (source == null) throw new ArgumentNullException("source");
