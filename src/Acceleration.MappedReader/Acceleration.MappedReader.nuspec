@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Acceleration.MappedReader</id>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <authors>Ryan Davis</authors>
     <owners>Acceleration.net</owners>
     <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
@@ -11,10 +11,7 @@
     <description>Helpers and convenience methods for pulling data out
     of `IDataReader`s</description>
     <releaseNotes>
-      <![CDATA[
-When falling back to string parsing, use `IDataReader.GetValue` and `ToString`,
-`IDataReader.GetString` can throw `InvalidCastException`s.
-]]>
+      strongly named
     </releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>orm</tags>

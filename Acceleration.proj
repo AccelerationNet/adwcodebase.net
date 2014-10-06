@@ -8,9 +8,11 @@
     <Configuration>Debug</Configuration>
     <Sln>src\Acceleration.sln</Sln>
     <AnalyzeAssemblies>src\Tests\bin\Debug\Accel*.dll</AnalyzeAssemblies>
-    <MSTestFile>src/Tests/bin/Debug/Tests.dll src/Acceleration.Hmac.Tests/bin/Debug/Acceleration.Hmac.Tests.dll</MSTestFile>
+    <MSTestFile>src/Tests/bin/Debug/Tests.dll src/Acceleration.Hmac.Tests/bin/Debug/Acceleration.Hmac.Tests.dll src/Acceleration.MappedReader.Tests/bin/Debug/Acceleration.MappedReader.Tests.dll</MSTestFile>
     <LibToPackage>Acceleration.Collections</LibToPackage>
+
   </PropertyGroup>
+
 
   <Target Name="Docs" AfterTargets="Jenkins">
     <Exec Command="tools\doxygen.exe doxyfile"/>
@@ -24,7 +26,7 @@
     <Delete Files="@(OldPacks)" />
     
     <MSBuild Projects="src\$(LibToPackage)\$(LibToPackage).csproj"
-	     Properties="Configuration=Release" />
+	     Properties="Configuration=Release;SignAssembly=true;AssemblyOriginatorKeyFile=..\..\signing.snk;DefineConstants=SIGNED" />
     
     <Exec Command="$(NugetBinary) pack src\$(LibToPackage)\$(LibToPackage).nuspec -OutputDirectory $(BuildArtifactsDir) -NonInteractive" />
   </Target>
