@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
 	 DefaultTargets="Build">
 
-  <Import Project="src/Build/tools/Common.targets" />
+  <Import Project="src/Acceleration.Build/tools/Common.targets" />
 
   <PropertyGroup>
     <Configuration>Debug</Configuration>

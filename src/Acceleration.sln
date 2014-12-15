@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Web
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Build", "Build\Acceleration.Build.csproj", "{249975FE-DCBF-402C-A9B6-E7E4C4220B65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Build", "Acceleration.Build\Acceleration.Build.csproj", "{249975FE-DCBF-402C-A9B6-E7E4C4220B65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9C2BD67C-B300-4C86-8978-5A1A17AB80A1}"
 EndProject
@@ -27,6 +27,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.Hmac.Tests", "Acceleration.Hmac.Tests\Acceleration.Hmac.Tests.csproj", "{A930AD6B-F2EC-478D-88D5-B4C82E9E5438}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.MappedReader.Tests", "Acceleration.MappedReader.Tests\Acceleration.MappedReader.Tests.csproj", "{7AEE33DA-14BA-4E6E-B7A9-215450A9956A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9FCF966-6649-400B-A296-1F5B263FAD57}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

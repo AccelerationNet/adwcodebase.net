@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Acceleration.Build</id>
+    <version>1.0.0</version>
+    <authors>Ryan Davis</authors>
+    <owners>Acceleration.net</owners>
+    <licenseUrl>https://github.com/AccelerationNet/adwcodebase.net/raw/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/AccelerationNet/adwcodebase.net/tree/master/src/Acceleration.Build</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Helpers for msbuild</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>utilities msbuild</tags>
+  </metadata>
+  <files>
+    <file src="tools/Common.targets" target="build/" />
+    <file src="tools/Versioning.targets" target="build/Acceleration.Build.targets" />
+    <file src="README.md" target="" />
+  </files>
+</package>
