@@ -10,6 +10,8 @@
     <AnalyzeAssemblies>src\Tests\bin\Debug\Accel*.dll</AnalyzeAssemblies>
     <MSTestFile>src/Tests/bin/Debug/Tests.dll src/Acceleration.Hmac.Tests/bin/Debug/Acceleration.Hmac.Tests.dll src/Acceleration.MappedReader.Tests/bin/Debug/Acceleration.MappedReader.Tests.dll</MSTestFile>
     <LibToPackage>Acceleration.Collections</LibToPackage>
+    <KeyFile>$(MSBuildProjectDirectory)\..\dotnet-config\signing.snk</KeyFile>
+    <NugetApiKeyFile>$(MSBuildProjectDirectory)\..\dotnet-config\nuget-api-key</NugetApiKeyFile>
 
   </PropertyGroup>
 
@@ -26,7 +28,7 @@
     <Delete Files="@(OldPacks)" />
     
     <MSBuild Projects="src\$(LibToPackage)\$(LibToPackage).csproj"
-	     Properties="Configuration=Release;SignAssembly=true;AssemblyOriginatorKeyFile=..\..\signing.snk;DefineConstants=SIGNED" />
+	     Properties="Configuration=Release;SignAssembly=true;AssemblyOriginatorKeyFile=$(KeyFile);DefineConstants=SIGNED" />
     
     <Exec Command="$(NugetBinary) pack src\$(LibToPackage)\$(LibToPackage).nuspec -OutputDirectory $(BuildArtifactsDir) -NonInteractive" />
   </Target>
@@ -35,8 +37,10 @@
     <ItemGroup>
       <NugetPacks Include="$(BuildArtifactsDir)$(LibToPackage).*"/>
     </ItemGroup>
-    
-    <Exec Command="$(NugetBinary) push @(NugetPacks) -NonInteractive" />
+    <ReadLinesFromFile File="$(NugetApiKeyFile)">
+      <Output TaskParameter="Lines" ItemName="NugetApiKey" />
+    </ReadLinesFromFile>
+    <Exec Command="$(NugetBinary) push @(NugetPacks) @(NugetApiKey) -NonInteractive" />
   </Target>
   
 </Project>

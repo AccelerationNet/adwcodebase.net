@@ -12,6 +12,11 @@ We have MSBuild targets setup:
 * `/t:Analyze` - builds everything and runs static analysis
 * `/t:Jenkins` - builds everything, runs tests, runs static analysis
 * `/t:Docs` - make the docs
+
+To publish to nuget, you must have `dotnet-config` checked out in the
+parent folder of this file. That private repo has the various keys
+needed to compile strongly-named assemblies and upload to nuget.
+
 * `/t:package /p:LibToPackage=X` - make a nuget package ready to
    be uploaded
 * `/t:push /p:LibToPackage=X` - upload a nuget package, depends on
