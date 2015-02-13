@@ -30,6 +30,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceleration.MappedReader.T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9FCF966-6649-400B-A296-1F5B263FAD57}"
 	ProjectSection(SolutionItems) = preProject
+		..\Acceleration.proj = ..\Acceleration.proj
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
