@@ -12,14 +12,18 @@
     <LibToPackage>Acceleration.Collections</LibToPackage>
     <KeyFile>$(MSBuildProjectDirectory)\..\dotnet-config\signing.snk</KeyFile>
     <NugetApiKeyFile>$(MSBuildProjectDirectory)\..\dotnet-config\nuget-api-key</NugetApiKeyFile>
-
+    <ToolsHome>$(MSBuildThisFileDirectory)tools\</ToolsHome>
   </PropertyGroup>
 
 
   <Target Name="Docs" AfterTargets="Jenkins">
-    <Exec Command="tools\doxygen.exe doxyfile"/>
+    <Exec Command="$(ToolsHome)doxygen.exe doxyfile"/>
   </Target>
 
+  <Target Name="RestorePackages" BeforeTargets="Build">
+    <Exec Command="&quot;$(ToolsHome)NuGet\nuget.exe&quot; restore &quot;$(Sln)&quot;" />
+  </Target>
+  
   <Target Name="package" DependsOnTargets="_findBinaries">
     <MakeDir Directories="$(BuildArtifactsDir)"/>
     <ItemGroup>
